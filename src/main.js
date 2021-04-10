@@ -17,10 +17,7 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
     console.log("Connected as " + client.user.tag);
-    client.user.setActivity('WoW mit Ragath');
-
-    const test = client.guilds.cache.first();
-    console.log(test);
+    client.user.setActivity(config.defaultActivity);
 });
 
 // Listen for incoming messages.

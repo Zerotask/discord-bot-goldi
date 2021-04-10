@@ -1,3 +1,4 @@
 {
-    "commandPrefix": "!"
+    "commandPrefix": "!",
+    "defaultActivity": "WoW mit Ragath"
 }
