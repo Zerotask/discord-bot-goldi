@@ -1,8 +1,19 @@
+const fs = require('fs');
+const path = require('path');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 require('dotenv').config();
-const commands = require('../commands.json');
 const config = require('../config.json');
+
+client.commands = new Discord.Collection();
+const commandsPath = path.resolve('./src/commands');
+const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+
+// Register commands
+for (const file of commandFiles) {
+    const command = require(`${commandsPath}/${file}`);
+    client.commands.set(command.name, command);
+}
 
 client.on('ready', () => {
     console.log("Connected as " + client.user.tag);
@@ -15,39 +26,21 @@ client.on('message', message => {
         return;
     }
 
-    // Consider all commands from commands.json
-    handleCommands(message);
-});
+    const args = message.content.slice(config.commandPrefix.length).trim().split(/ +/);
+    const command = args.shift().toLowerCase();
 
-const handleCommands = (message) => {
-    const messageContent = message.content;
+    // Abort if no command is registered with this name.
+    if (!client.commands.has(command)) {
+        return;
+    };
 
-    for (let key in commands) {
-        // Extract message
-        const messageParts = messageContent.split(' ');
-
-        // Remove first element from message parts and make it lower case for better comparison
-        const command = messageParts.shift().toLowerCase();
-
-        // Check if command key matches the entered message (ignoring the prefix)
-        if (key.toLowerCase() === command.substr(1)) {
-            let commandResponse = commands[key];
-
-            // Check if a command response has placeholders and there are command arguments provided.
-            if (commandResponse.includes('$') && messageParts.length > 0) {
-                for (let i = 0; i < messageParts.length; i++) {
-                    const placeholder = '$' + i;
-                    const messagePart = messageParts[i];
-
-                    commandResponse = commandResponse.replace(placeholder, messagePart);
-                }
-            }
-
-            // Respond to discord channel.
-            message.channel.send(commandResponse);
-        }
+    try {
+        client.commands.get(command).execute(message, args);
+    } catch (error) {
+        console.error(error);
+        message.reply('there was an error trying to execute that command!');
     }
-}
+});
 
 // Start the bot.
 client.login(process.env.DISCORD_BOT_TOKEN);
