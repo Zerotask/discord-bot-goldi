@@ -2,7 +2,7 @@ const { getRandomNumber } = require('../functions');
 
 module.exports = {
     name: 'love',
-    description: 'Random love generator',
+    description: 'Hier wird es heiß!',
     execute(message, args) {
         const love = getRandomNumber(0, 100);
         let response = `${args[0] || message.author.username} liebt ${args[1] || message.author.username} zu ${love}% `

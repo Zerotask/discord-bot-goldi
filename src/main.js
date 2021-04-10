@@ -17,10 +17,15 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
     console.log("Connected as " + client.user.tag);
+    client.user.setActivity('WoW mit Ragath');
+
+    const test = client.guilds.cache.first();
+    console.log(test);
 });
 
 // Listen for incoming messages.
 client.on('message', message => {
+    // console.log(client.guilds.cache.first().members);
     // Don't respond to own bot messages
     if (message.author.bot || !message.content.startsWith(config.commandPrefix)) {
         return;
@@ -29,13 +34,13 @@ client.on('message', message => {
     const args = message.content.slice(config.commandPrefix.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
 
-    // Abort if no command is registered with this name.
-    if (!client.commands.has(command)) {
-        return;
-    };
-
     try {
-        client.commands.get(command).execute(message, args);
+        const cmd = client.commands.get(command) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(command));
+
+        // Check if it's a registered command.
+        if (cmd) {
+            cmd.execute(message, args, client);
+        }
     } catch (error) {
         console.error(error);
         message.reply('there was an error trying to execute that command!');
@@ -43,4 +48,5 @@ client.on('message', message => {
 });
 
 // Start the bot.
+// Discord dev: @see https://discord.com/developers/applications
 client.login(process.env.DISCORD_BOT_TOKEN);
