@@ -4,6 +4,19 @@ module.exports = {
     name: 'love',
     description: 'Random love generator',
     execute(message, args) {
-        message.channel.send(`${args[0]} liebt ${args[1]} zu ${getRandomNumber(0, 100)}% <3`);
+        const love = getRandomNumber(0, 100);
+        let response = `${args[0] || message.author.username} liebt ${args[1] || message.author.username} zu ${love}% `
+
+        if (love <= 20) {
+            response += ':( FeelsBadMan';
+        } else if (love > 20 && love <= 60) {
+            response += ':/';
+        } else if (love > 60 && love <= 90) {
+            response += ':)';
+        } else {
+            response += ':) FeelsGoodMan <3';
+        }
+
+        message.channel.send(response);
     },
 };
