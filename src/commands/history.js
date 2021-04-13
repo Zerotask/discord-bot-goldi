@@ -11,7 +11,7 @@ const getRandomEvents = (cacheKey, number) => {
 
 const outputEvents = (message, events) => {
     const output = [];
-    output.push(`Zeige ${events.length} zufällige historische Events für den heutigen Tag:`);
+    output.push(`Zeige ${events.length} zufällige historische Ereignisse für den heutigen Tag:`);
     for (const event of events) {
         output.push(`${event.year}: ${event.text}`);
     }
@@ -29,7 +29,7 @@ module.exports = {
         const month = date.getMonth() + 1;
         const dayOfMonth = date.getDate();
         const cacheKey = month + '_' + dayOfMonth;
-        const numberOfEvents = Math.min(parseInt(args[0]), 10);
+        const numberOfEvents = Math.min(parseInt(args[0]) || 5, 10);
 
         // Cache entry found
         if (cache[cacheKey] !== undefined) {
