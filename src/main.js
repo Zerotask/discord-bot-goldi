@@ -22,9 +22,29 @@ client.on('ready', () => {
 
 // Listen for incoming messages.
 client.on('message', message => {
-    // console.log(client.guilds.cache.first().members);
     // Don't respond to own bot messages
-    if (message.author.bot || !message.content.startsWith(config.commandPrefix)) {
+    if (message.author.bot) {
+        return;
+    }
+
+    reactToEmojis(message);
+    reactToCommands(message);
+});
+
+const reactToEmojis = (message) => {
+    const lowerCaseContent = message.content.toLowerCase();
+    if (lowerCaseContent.includes('kappa')) {
+        message.channel.send('https://i.kym-cdn.com/photos/images/newsfeed/000/925/494/218.png_large');
+    } else if (lowerCaseContent.includes('lul')) {
+        message.channel.send('https://freepngimg.com/thumb/league_of_legends/85483-twitch-emote-face-facial-john-expression-bain.png');
+    } else if (lowerCaseContent.includes('pogchamp')) {
+        message.channel.send('https://freepngimg.com/thumb/mouth/92712-ear-head-twitch-pogchamp-emote-free-download-png-hq-thumb.png');
+    }
+}
+
+const reactToCommands = (message) => {
+    // Besides reacting to emojis, ignore all non-commands.
+    if (!message.content.startsWith(config.commandPrefix)) {
         return;
     }
 
@@ -42,7 +62,7 @@ client.on('message', message => {
         console.error(error);
         message.reply('there was an error trying to execute that command!');
     }
-});
+}
 
 // Start the bot.
 // Discord dev: @see https://discord.com/developers/applications
