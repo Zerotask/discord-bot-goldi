@@ -11,7 +11,8 @@ const getRandomEvents = (cacheKey, number) => {
 
 const outputEvents = (message, events) => {
     const output = [];
-    output.push(`Zeige ${events.length} zufällige historische Ereignisse für den heutigen Tag:`);
+    const date = new Date();
+    output.push(`Hier sind ${events.length} zufällige historische Ereignisse für den heutigen Tag (${date.getDate()}.${date.getMonth() + 1}):`);
     for (const event of events) {
         output.push(`${event.year}: ${event.text}`);
     }
