@@ -1,5 +1,5 @@
 # Discord Bot Goldi
-This project is a very lightweight discord bot which uses https://discord.js.org.
+This project is a demonstration of a discord bot which uses the awesome https://discord.js.org library.
 
 [![CodeQL](https://github.com/Zerotask/discord-bot-goldi/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Zerotask/discord-bot-goldi/actions/workflows/codeql-analysis.yml)
 
