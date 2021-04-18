@@ -36,7 +36,7 @@ module.exports = {
             message.reply(`Du hast ${randomUser.username} ein Like geschickt :heart:`);
 
             // send DM to the liked user
-            randomUser.send(`Du hast bei Cringer ein Like von ${message.author.username} erhalten :heart:`);
+            randomUser.send(`Du hast bei Cringer ein Like von ${message.author} erhalten :heart:`);
           } else {
             message.channel.send('Bruder muss los :broken_heart:');
           }
