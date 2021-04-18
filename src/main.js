@@ -45,13 +45,14 @@ const reactToCommands = (message) => {
     }
   } catch (error) {
     console.error(error);
-    message.reply('there was an error trying to execute that command!');
+    message.reply('Es ist ein unerwarteter Fehler aufgetreten. Goldi entschuldigt sich :(');
   }
 };
 
 client.on('ready', () => {
   console.log(`Connected as ${client.user.tag}`);
   client.user.setActivity(config.defaultActivity);
+  // console.log(client);
 });
 
 // Listen for incoming messages.
