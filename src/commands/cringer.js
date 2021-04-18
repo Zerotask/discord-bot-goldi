@@ -18,7 +18,7 @@ module.exports = {
 
     const response = [];
     response.push(message.author);
-    response.push(':sparkling_heart: :sparkling_heart: :sparkling_heart: Cringer - finde auch du deine große Liebe :sparkling_heart: :sparkling_heart: :sparkling_heart:');
+    response.push(':sparkling_heart: :sparkling_heart: Cringer - finde auch du deine große Liebe :sparkling_heart: :sparkling_heart:');
     response.push('');
     response.push(`Gefällt dir ${randomUser.username} :question:`);
     response.push(randomUser.avatarURL());
