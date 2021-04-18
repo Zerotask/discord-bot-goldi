@@ -8,7 +8,12 @@ module.exports = {
     if (args.length) {
       const reportMessage = [];
       reportMessage.push(`${message.author} möchte den User ${args.shift()} melden.`);
-      reportMessage.push(`Diese Nachricht wurde im channel <#${message.channel.id}> gemeldet.`);
+
+      if (message.channel.type === 'dm') {
+        reportMessage.push('Diese Nachricht wurde via DM gemeldet.');
+      } else {
+        reportMessage.push(`Diese Nachricht wurde im channel <#${message.channel.id}> gemeldet.`);
+      }
 
       // Check if any further information were passed
       if (args.length) {
