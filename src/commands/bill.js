@@ -2,7 +2,7 @@ const { getUserFromMention } = require('../functions');
 
 module.exports = {
   name: 'be-like-bill',
-  aliases: ['belikebill', 'bill'],
+  aliases: ['belikebill', 'bill', 'be-like', 'be-like-bill'],
   description: 'Be like Bill.',
   example: 'kathrin f',
   execute(message, args, client) {

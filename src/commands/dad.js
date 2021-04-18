@@ -1,8 +1,8 @@
 const fetch = require('node-fetch');
 
 module.exports = {
-  name: 'dad-joke',
-  aliases: ['dad', 'dadjoke', 'vater-witz', 'vaterwitz'],
+  name: 'dad',
+  aliases: ['dad', 'dadjoke', 'vater-witz', 'vaterwitz', 'dad-joke'],
   description: 'Zeige einen random dad joke',
   execute(message) {
     fetch('https://icanhazdadjoke.com/', {

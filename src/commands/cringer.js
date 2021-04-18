@@ -16,21 +16,24 @@ module.exports = {
     const userListArray = Array.from(userList);
     const randomUser = userListArray[getRandomNumber(0, userListArray.length - 1)][1];
 
-    const output = [];
-    output.push(`Ist ${randomUser.username} dein nächstes Cringer Match :question:`);
-    output.push(randomUser.avatarURL());
-    output.push(':arrow_right: Schreibe: Ja oder Nein');
-    message.channel.send(output).then(() => {
+    const response = [];
+    response.push(message.author);
+    response.push(':sparkling_heart: :sparkling_heart: :sparkling_heart: Cringer - finde auch du deine große Liebe :sparkling_heart: :sparkling_heart: :sparkling_heart:');
+    response.push('');
+    response.push(`Gefällt dir ${randomUser.username} :question:`);
+    response.push(randomUser.avatarURL());
+    response.push(':arrow_right: Schreibe: Ja oder Nein');
+    message.channel.send(response).then(() => {
       const filter = (m) => message.author.id === m.author.id;
-      const listYes = ['ja', 'jaa', 'jep', 'na klar', 'yes', 'jop', 'love', 'lile', 'liebe', 'j', 'y'];
+      const listYes = ['ja', 'jaa', 'jo', 'jaaa', 'jaaaa', 'jaaaaa', 'jep', 'jip', 'jap', 'na klar', 'yes', 'jop', 'love', 'like', 'liebe', 'j', 'y'];
 
-      // Wait 120 seconds for a reply.
-      message.channel.awaitMessages(filter, { time: 120000, max: 1, errors: ['time'] })
+      // Wait 60 seconds for a reply.
+      message.channel.awaitMessages(filter, { time: 60000, max: 1, errors: ['time'] })
         .then((messages) => {
           const answer = messages.first().content.toLowerCase().trim();
           if (listYes.includes(answer)) {
             // Send to channel
-            message.channel.send(`Du hast ${randomUser.username} ein Like geschickt :heart:`);
+            message.reply(`Du hast ${randomUser.username} ein Like geschickt :heart:`);
 
             // send DM to the liked user
             randomUser.send(`Du hast bei Cringer ein Like von ${message.author.username} erhalten :heart:`);
@@ -39,7 +42,7 @@ module.exports = {
           }
         })
         .catch(() => {
-          message.channel.send('Es ist ein unerwarteter Fehler aufgetreten. Goldi entschuldigt sich :(');
+          message.reply('Wie es scheint, kannst du dich wohl nicht entscheiden :thinking: Goldi ist auch noch Single :relaxed:');
         });
     });
   },
