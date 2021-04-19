@@ -1,4 +1,4 @@
-const { getRandomNumber } = require('../functions');
+const config = require('../../config.json');
 const { Cringer } = require('../entities/cringer');
 
 const version = 0.2;
@@ -155,21 +155,22 @@ module.exports = {
         default:
           const response = [];
           response.push('Nachfolgende Befehle kannst du mit Cringer nutzen:');
-          response.push('**Beschreibung aktualisieren**: `!cringer beschreibung <text>`');
-          response.push('**Beschreibung abrufen**: `!cringer beschreibung`');
-          response.push('**Alter aktualisieren**: `!cringer alter <alter>`');
-          response.push('**Alter abrufen**: `!cringer alter`');
-          response.push('**Job aktualisieren**: `!cringer job <job>`');
-          response.push('**Job abrufen**: `!cringer job`');
-          response.push('**Geschlecht aktualisieren**: `!cringer geschlecht <geschlecht>`');
-          response.push('**Geschlecht abrufen**: `!cringer geschlecht`');
-          response.push('**Profil abrufen**: `!cringer profil`');
-          response.push('**Profil zurücksetzen**: `!cringer profil reset`');
-          response.push('**Cringer Game**: `!cringer`');
+          response.push(`**Beschreibung aktualisieren**: \`${config.commandPrefix}${this.name} beschreibung <text>\``);
+          response.push(`**Beschreibung abrufen**: \`${config.commandPrefix}${this.name} beschreibung\``);
+          response.push(`** Alter aktualisieren **: \`${config.commandPrefix}${this.name} alter <alter>\``);
+          response.push(`**Alter abrufen**: \`${config.commandPrefix}${this.name} alter\``);
+          response.push(`** Job aktualisieren **: \`${config.commandPrefix}${this.name} job <job>\``);
+          response.push(`**Job abrufen**: \`${config.commandPrefix}${this.name} job\``);
+          response.push(`** Geschlecht aktualisieren **: \`${config.commandPrefix}${this.name} geschlecht <geschlecht>\``);
+          response.push(`**Geschlecht abrufen**: \`${config.commandPrefix}${this.name} geschlecht\``);
+          response.push(`** Profil abrufen **: \`${config.commandPrefix}${this.name} profil\``);
+          response.push(`**Profil zurücksetzen**: \`${config.commandPrefix}${this.name} profil reset\``);
+          response.push(`** Cringer Game **: \`${config.commandPrefix}${this.name}\``);
           message.reply(response);
       }
     } else {
       // play cringer game
+      message.reply('Noch nicht implementiert.');
     }
   },
 };
