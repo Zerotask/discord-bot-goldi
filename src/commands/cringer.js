@@ -353,7 +353,7 @@ module.exports = {
           response.push(`**Job abrufen**: \`${config.commandPrefix}${this.name} job\``);
           response.push(`**Geschlecht aktualisieren **: \`${config.commandPrefix}${this.name} geschlecht <geschlecht>\``);
           response.push(`**Geschlecht abrufen**: \`${config.commandPrefix}${this.name} geschlecht\``);
-          response.push(`** Profil abrufen **: \`${config.commandPrefix}${this.name} profil\``);
+          response.push(`**Profil abrufen **: \`${config.commandPrefix}${this.name} profil\``);
           response.push(`**Profil zurücksetzen**: \`${config.commandPrefix}${this.name} profil reset\``);
           response.push(`**Alles zurücksetzen**: \`${config.commandPrefix}${this.name} reset\``);
           response.push(`**Cringer-Version abfragen**: \`${config.commandPrefix}${this.name} version\``);
