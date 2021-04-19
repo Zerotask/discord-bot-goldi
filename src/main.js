@@ -53,7 +53,11 @@ const reactToCommands = (message) => {
 client.on('ready', () => {
   console.log(`Connected as ${client.user.tag}`);
   client.user.setActivity(config.defaultActivity);
-  Cringer.sync();
+
+  // This checks what is the current state of the table in the database (which columns it has, what
+  // are their data types, etc),and then performs the necessary changes in the table to make it
+  // matchthe model.
+  Cringer.sync({ alter: true });
 });
 
 // Listen for incoming messages.

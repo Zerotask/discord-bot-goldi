@@ -20,6 +20,9 @@ const Cringer = db.define('cringers', {
     defaultValue: 69,
     allowNull: false,
   },
+  ownLikes: Sequelize.JSON,
+  foreignLikes: Sequelize.JSON,
+  matches: Sequelize.JSON,
 });
 
 module.exports = { Cringer };

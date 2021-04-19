@@ -5,7 +5,7 @@ const db = new Sequelize('database', 'user', 'password', {
   dialect: 'sqlite',
   logging: false,
   // SQLite only
-  storage: 'db.sqlite',
+  storage: `${process.env.SQL_PATH}/db.sqlite`,
 });
 
 module.exports = { db };

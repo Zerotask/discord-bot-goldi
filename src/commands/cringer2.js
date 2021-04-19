@@ -69,6 +69,57 @@ const resetProfile = async (userId) => {
   }
 };
 
+const resetMatches = async (userId) => {
+  const affectedRows = await Cringer.update({ matches: [] }, { where: { userId } });
+  if (affectedRows !== 1) {
+    console.log(`Error setting matches. Affected rows: ${affectedRows}`);
+  }
+};
+
+const getMatches = async (userId) => {
+  const user = await getUser(userId);
+  return user.matches;
+};
+
+const addOwnLike = async (userId, otherUserId) => {
+  const user = await getUser(userId);
+  const { ownLikes } = user;
+  if (!ownLikes.includes(otherUserId)) {
+    ownLikes.push(otherUserId);
+  }
+
+  const affectedRows = await Cringer.update({ ownLikes }, { where: { userId } });
+  if (affectedRows !== 1) {
+    console.log(`Error setting matches. Affected rows: ${affectedRows}`);
+  }
+};
+
+const resetOwnLikes = async (userId) => {
+  const affectedRows = await Cringer.update({ ownLikes: [] }, { where: { userId } });
+  if (affectedRows !== 1) {
+    console.log(`Error setting matches. Affected rows: ${affectedRows}`);
+  }
+};
+
+const getOwnLikes = async (userId) => {
+  const user = await getUser(userId);
+  return user.ownLikes;
+};
+
+const getForeignLikes = async (userId) => {
+  const user = await getUser(userId);
+  return user.foreignLikes;
+};
+
+const reset = async (userId) => {
+  const affectedRows = await Cringer.update({
+    age: 69, job: 'Arbeitslos', gender: '', ownLikes: [], matches: [],
+  }, { where: { userId } });
+  if (affectedRows !== 1) {
+    console.log(`Error setting profile. Affected rows: ${affectedRows}`);
+  }
+};
+
 module.exports = {
   name: 'cringer2',
   aliases: ['cringe2', 'match2'],
@@ -96,7 +147,7 @@ module.exports = {
         case 'age':
         case 'alter':
           if (args[1]) {
-            const age = args[1];
+            const age = args.slice(1).join(' ');
             setAge(userId, age);
             message.reply(`deiner neues Alter ist: ${age}`);
           } else {
@@ -106,7 +157,7 @@ module.exports = {
         case 'job':
         case 'beruf':
           if (args[1]) {
-            const job = args[1];
+            const job = args.slice(1).join(' ');
             setJob(userId, job);
             message.reply(`deiner neuer Job ist: ${job}`);
           } else {
@@ -116,7 +167,7 @@ module.exports = {
         case 'gender':
         case 'geschlecht':
           if (args[1]) {
-            const gender = args[1];
+            const gender = args.slice(1).join(' ');
             setGender(userId, gender);
             message.reply(`dein neues Geschlecht ist: ${gender}`);
           } else {
@@ -132,10 +183,11 @@ module.exports = {
             const profile = await getUser(userId);
             const response = [];
             response.push('dein Cringer-Profil:');
-            response.push(`Beschreibung: ${profile.description}`);
+            response.push(`Name: ${message.author.username}`);
+            response.push(`Geschlecht: ${profile.gender || '-nicht angegeben-'}`);
             response.push(`Alter: ${profile.age}`);
             response.push(`Job: ${profile.job}`);
-            response.push(`Geschlecht: ${profile.gender || '-nicht angegeben-'}`);
+            response.push(`Beschreibung: ${profile.description}`);
             response.push(message.author.avatarURL());
             message.reply(response);
           }
@@ -149,7 +201,59 @@ module.exports = {
           break;
         case 'reset':
         case 'zurücksetzen':
-          message.reply('Noch nicht implementiert.');
+          reset(userId);
+          message.reply('Dein Profil, deine eigenen Likes und deine Matches wurden zurückgesetzt.');
+          break;
+        case 'likes':
+        case 'foreign-likes':
+          const foreignLikes = await getForeignLikes(userId);
+          if (foreignLikes) {
+            const response = [];
+            response.push('Deine eigenen Likes:');
+            for (const foreignLike in foreignLikes) {
+              response.push(foreignLike);
+            }
+            message.reply(response);
+          } else {
+            message.reply('Du hast bisher keine Likes erhalten :broken_heart:');
+          }
+          break;
+        case 'liked':
+        case 'own-likes':
+          if (args[1] && (args[1].toLowerCase() === 'reset' || args[1].toLowerCase() === 'zurücksetzen')) {
+            resetOwnLikes(userId);
+            message.reply('deine eigenen Likes wurden zurückgesetzt.');
+          } else {
+            const ownLikes = await getOwnLikes(userId);
+            if (ownLikes) {
+              const response = [];
+              response.push('Deine eigenen Likes:');
+              for (const ownLike in ownLikes) {
+                response.push(ownLike);
+              }
+              message.reply(response);
+            } else {
+              message.reply('Du hast bisher keine Person geliked :broken_heart:');
+            }
+          }
+          break;
+        case 'matches':
+          if (args[1] && (args[1].toLowerCase() === 'reset' || args[1].toLowerCase() === 'zurücksetzen')) {
+            resetMatches(userId);
+            message.reply('deine Matches wurde zurückgesetzt.');
+          } else {
+            const matches = await getMatches(userId);
+            if (matches) {
+              const response = [];
+              response.push('Deine Matches:');
+              for (const match in matches) {
+                response.push(match);
+              }
+              message.reply(response);
+            } else {
+              message.reply('Du hast bisher keine Cringer Matches :broken_heart:');
+            }
+          }
           break;
         case 'help':
         default:
