@@ -31,4 +31,8 @@ const shuffleArray = (array) => {
   return array;
 };
 
-module.exports = { getRandomNumber, getUserFromMention, shuffleArray };
+const isMod = (member) => member.roles.cache.some((role) => role.name === 'Mod');
+
+module.exports = {
+  getRandomNumber, getUserFromMention, shuffleArray, isMod,
+};

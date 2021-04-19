@@ -8,6 +8,7 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 const commandsPath = path.resolve('./src/commands');
 const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith('.js'));
+const { Cringer } = require('./entities/cringer');
 
 // Register commands
 for (const file of commandFiles) {
@@ -52,7 +53,7 @@ const reactToCommands = (message) => {
 client.on('ready', () => {
   console.log(`Connected as ${client.user.tag}`);
   client.user.setActivity(config.defaultActivity);
-  // console.log(client);
+  Cringer.sync();
 });
 
 // Listen for incoming messages.
