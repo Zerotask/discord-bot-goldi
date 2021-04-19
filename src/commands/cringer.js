@@ -274,7 +274,10 @@ module.exports = {
           break;
         case 'users':
         case 'user':
-          message.reply(`Es gibt insgesamt ${message.channel.guild.memberCount}`);
+        case 'leute':
+        case 'verfügbar':
+          const user = await getUser(userId);
+          message.reply(`Es gibt insgesamt ${message.channel.guild.memberCount} Leute. Du hast noch ${user.userPool.length} zum liken. Danach fängt es wieder von vorne an.`);
           break;
         case 'version':
           message.reply(`Die Cringer-Version ist: ${version}`);
