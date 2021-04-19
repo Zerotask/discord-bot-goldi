@@ -1,28 +1,39 @@
-const Sequelize = require('sequelize');
-const { db } = require('../db');
+const mongoose = require('mongoose');
 
-const Cringer = db.define('cringers', {
-  userId: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-  },
-  description: Sequelize.STRING,
-  job: {
-    type: Sequelize.STRING,
-    defaultValue: 'Arbeitslos',
+const CringerSchema = new mongoose.Schema({
+  userId: String,
+  name: {
+    type: String,
+    required: true,
+    trim: true,
   },
   gender: {
-    type: Sequelize.STRING,
-    defaultValue: '',
+    type: String,
+    default: '-nicht angegeben-',
+    trim: true,
   },
   age: {
-    type: Sequelize.INTEGER,
-    defaultValue: 69,
-    allowNull: false,
+    type: Number,
+    min: 0,
+    max: 150,
+    default: 69,
   },
-  ownLikes: Sequelize.JSON,
-  foreignLikes: Sequelize.JSON,
-  matches: Sequelize.JSON,
+  job: {
+    type: String,
+    default: '-nicht angegeben-',
+    trim: true,
+  },
+  description: {
+    type: String,
+    default: '-nicht angegeben-',
+    trim: true,
+  },
+  ownLikes: [String],
+  foreignLikes: [String],
+  matches: [String],
+  userPool: [String],
 });
+
+const Cringer = mongoose.model('Cringer', CringerSchema);
 
 module.exports = { Cringer };

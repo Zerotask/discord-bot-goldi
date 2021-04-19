@@ -2,4 +2,4 @@
 .env
 .openode
 Dockerfile
-*.sqlite
+/storage/*.sqlite
