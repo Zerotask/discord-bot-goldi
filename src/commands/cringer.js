@@ -179,11 +179,11 @@ const isMatch = async (userId1, userId2) => {
   if (user1.ownLikes.includes(userId2) && user2.ownLikes.includes(userId1)) {
     // Update matche for User 1
     user1.matches.push(userId2);
-    await Cringer.findOneAndUpdate({ userId1 }, { matches: user1.matches });
+    await Cringer.findOneAndUpdate({ userId: userId1 }, { matches: user1.matches });
 
     // Update matche for User 2
     user2.matches.push(userId1);
-    await Cringer.findOneAndUpdate({ userId2 }, { matches: user2.matches });
+    await Cringer.findOneAndUpdate({ userId: userId2 }, { matches: user2.matches });
 
     return true;
   }
@@ -413,7 +413,11 @@ module.exports = {
               }
 
               if (await isMatch(userId, nextUserId)) {
-                message.channel.send(`:sparkling_heart: :sparkling_heart: :sparkling_heart: ${message.author} und ${nextUser} haben ein Match! :sparkling_heart: :sparkling_heart: :sparkling_heart:`);
+                const response = [];
+                response.push(':sparkling_heart: :sparkling_heart: :sparkling_heart:');
+                response.push(`${message.author} und ${nextUser} haben ein Match!`);
+                response.push(':sparkling_heart: :sparkling_heart: :sparkling_heart:');
+                message.channel.send(response);
               }
             } else {
               message.channel.send('Bruder muss los :broken_heart:');
