@@ -24,6 +24,8 @@ const show = (message, commandName) => {
   response.push(`**Matches anzeigen**: \`${config.commandPrefix}${commandName} matches\``);
   response.push(`**Anzahl der Leute anzeigen**: \`${config.commandPrefix}${commandName} users\``);
   response.push(`**Cringer Premium anzeigen**: \`${config.commandPrefix}${commandName} premium\``);
+  response.push(`**In der Suche nicht mehr angezeigt werden**: \`${config.commandPrefix}${commandName} hide\``);
+  response.push(`**In der Suche angezeigt werden**: \`${config.commandPrefix}${commandName} show\``);
   response.push(`**Cringer Game **: \`${config.commandPrefix}${commandName}\``);
   message.channel.send(response);
 };

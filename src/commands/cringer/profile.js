@@ -66,6 +66,12 @@ const show = async (message, userId) => {
   response.push(`Job: ${user.job}`);
   response.push(`Beschreibung: ${user.description}`);
   response.push(message.author.avatarURL());
+  response.push('');
+  if (user.show) {
+    response.push('*Du wirst in der Suche angezeigt*');
+  } else {
+    response.push('*Du wirst in der Suche nicht angezeigt*');
+  }
   message.reply(response);
 };
 
