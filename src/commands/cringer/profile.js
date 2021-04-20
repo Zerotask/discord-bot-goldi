@@ -68,9 +68,9 @@ const show = async (message, userId) => {
   response.push(message.author.avatarURL());
   response.push('');
   if (user.show) {
-    response.push('*Du wirst in der Suche angezeigt*');
+    response.push('*Du wirst in der Suche angezeigt* :eyes:');
   } else {
-    response.push('*Du wirst in der Suche nicht angezeigt*');
+    response.push('*Du wirst in der Suche nicht angezeigt* :x:');
   }
   message.reply(response);
 };

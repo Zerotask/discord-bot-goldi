@@ -137,12 +137,12 @@ module.exports = {
         case 'off':
         case 'hide':
           profile.setShowUser(userId, false);
-          message.reply('Du wirst in der Suche nun nicht mehr angezeigt. Du kannst aber weiterhin cringen.');
+          message.reply('Du wirst in der Suche nun nicht mehr angezeigt. :x: Du kannst aber weiterhin cringen.');
           break;
         case 'on':
         case 'show':
           profile.setShowUser(userId, true);
-          message.reply('Du wirst in der Suche nun angezeigt.');
+          message.reply('Du wirst in der Suche nun angezeigt. :eyes:');
           break;
         case 'help':
         default:
