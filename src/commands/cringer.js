@@ -209,6 +209,8 @@ module.exports = {
     const userId = message.author.id;
     await createUserIfNeeded(userId, message.author.username, userPool);
 
+    let response = [];
+
     // User set args
     if (args.length) {
       switch (args[0].toLowerCase()) {
@@ -261,7 +263,7 @@ module.exports = {
             message.reply('dein Profil wurde zurückgesetzt.');
           } else {
             const profile = await getUser(userId);
-            const response = [];
+            response = [];
             response.push('dein Cringer-Profil:');
             response.push(`Name: ${message.author.username}`);
             response.push(`Geschlecht: ${profile.gender || '-nicht angegeben-'}`);
@@ -292,7 +294,7 @@ module.exports = {
           const foreignLikes = await getForeignLikes(userId);
           if (foreignLikes.length) {
             console.log(foreignLikes);
-            const response = [];
+            response = [];
             response.push(`Das sind deine erhaltenen Likes (${foreignLikes.length}):`);
             foreignLikes.forEach((likeUserId) => response.push(userList.get(likeUserId).username));
             message.reply(response);
@@ -308,7 +310,7 @@ module.exports = {
           } else {
             const ownLikes = await getOwnLikes(userId);
             if (ownLikes.length) {
-              const response = [];
+              response = [];
               response.push(`Das sind deine gesendeten Likes (${ownLikes.length}):`);
               ownLikes.forEach((likeUserId) => response.push(userList.get(likeUserId).username));
               message.reply(response);
@@ -324,7 +326,7 @@ module.exports = {
           } else {
             const matches = await getMatches(userId);
             if (matches.length) {
-              const response = [];
+              response = [];
               response.push(`Das sind deine Matches (${matches.length}):`);
               matches.forEach((matchUserId) => response.push(userList.get(matchUserId).username));
               message.reply(response);
@@ -334,7 +336,7 @@ module.exports = {
           }
           break;
         case 'premium':
-          const response = [];
+          response = [];
           response.push(':money_mouth: :money_mouth: :money_mouth: **CRINGER PREMIUM LIFETIME** :money_mouth: :money_mouth: :money_mouth:');
           response.push('*-nichts für Geringverdiener-*');
           response.push('');
@@ -349,7 +351,7 @@ module.exports = {
           break;
         case 'help':
         default:
-          const response = [];
+          response = [];
           response.push(':sparkling_heart: :sparkling_heart: Cringer - finde auch du deine große Liebe :sparkling_heart: :sparkling_heart:');
           response.push('');
           response.push('Nachfolgende Befehle kannst du mit Cringer nutzen:');
@@ -382,7 +384,7 @@ module.exports = {
       const nextUserProfile = await getUser(nextUserId, nextUser.username);
       const ownUserProfile = await getUser(userId);
 
-      const response = [];
+      response = [];
       response.push(message.author);
       response.push(':sparkling_heart: :sparkling_heart: Cringer - finde auch du deine große Liebe :sparkling_heart: :sparkling_heart:');
       response.push('');
@@ -428,7 +430,7 @@ module.exports = {
               }
 
               if (await isMatch(userId, nextUserId)) {
-                const response = [];
+                response = [];
                 response.push(':sparkling_heart: :sparkling_heart: :sparkling_heart:');
                 response.push(`${message.author} und ${nextUser} haben ein Match!`);
                 response.push(':sparkling_heart: :sparkling_heart: :sparkling_heart:');
