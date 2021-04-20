@@ -359,7 +359,7 @@ module.exports = {
       }
     } else {
       // play cringer game
-      const nextUserId = await getNextUserForCringeGame(userId);
+      const nextUserId = await getNextUserForCringeGame(userId, userPool);
       const nextUser = userList.get(nextUserId);
       console.log({ nextUser });
       const nextUserProfile = await getUser(nextUserId, nextUser.username);
