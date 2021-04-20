@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// @see https://mongoosejs.com/docs/guide.html
 const CringerSchema = new mongoose.Schema({
   userId: {
     type: String,
@@ -38,6 +39,10 @@ const CringerSchema = new mongoose.Schema({
   },
   matches: [String],
   userPool: [String],
+  show: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 const Cringer = mongoose.model('Cringer', CringerSchema);

@@ -115,6 +115,7 @@ module.exports = {
           }
           break;
         case 'matches':
+        case 'match':
           if (args[1] && (args[1].toLowerCase() === 'reset' || args[1].toLowerCase() === 'zurücksetzen')) {
             match.resetMatches(userId);
             message.reply('deine Matches wurde zurückgesetzt.');
@@ -135,11 +136,13 @@ module.exports = {
           break;
         case 'off':
         case 'hide':
-          message.reply('Noch nicht implementiert');
+          profile.setShowUser(userId, false);
+          message.reply('Du wirst in der Suche nun nicht mehr angezeigt. Du kannst aber weiterhin cringen.');
           break;
         case 'on':
         case 'show':
-          message.reply('Noch nicht implementiert');
+          profile.setShowUser(userId, true);
+          message.reply('Du wirst in der Suche nun angezeigt.');
           break;
         case 'help':
         default:

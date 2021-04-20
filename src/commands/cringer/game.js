@@ -5,32 +5,60 @@ const { Cringer } = require('../../entities/cringer');
 
 const getNextUser = async (userId, userPool) => {
   const user = await getUser(userId);
-  let nextUser;
+  let nextUserId;
 
   // userPool is empty. Refresh it.
   if (!user.userPool.length) {
     // Reload user list
-    nextUser = userPool.pop();
+    nextUserId = userPool.pop();
+
+    // next user is already liked
+    // next user has set show=false
+    while (user.likes.sent.includes(nextUserId) || !(await getUser(nextUserId)).show) {
+      nextUserId = userPool.pop();
+    }
+
+    // No user available
+    if (!userPool.length) {
+      return null;
+    }
+
     await Cringer.findOneAndUpdate({ userId }, {
       userPool,
     });
 
-    return nextUser;
+    return nextUserId;
   }
 
   // Get last user from pool.
-  nextUser = user.userPool.pop();
+  nextUserId = user.userPool.pop();
+
+  // next user is already liked
+  // next user has set show=false
+  while (user.likes.sent.includes(nextUserId) || !(await getUser(nextUserId)).show) {
+    nextUserId = user.userPool.pop();
+  }
+
+  // No user available
+  if (!user.userPool.length) {
+    return null;
+  }
 
   // Update userPool
   await Cringer.findOneAndUpdate({ userId }, {
     userPool: user.userPool,
   });
 
-  return nextUser;
+  return nextUserId;
 };
 
 const play = async (message, userId, userPool, userList) => {
   const nextUserId = await getNextUser(userId, userPool);
+  if (nextUserId === null) {
+    message.reply('Sorry, aber du hast bereits alle User in diesem Discord-Server geliked LUL');
+    return;
+  }
+
   const nextUser = userList.get(nextUserId);
   const nextUserProfile = await getUser(nextUserId, nextUser.username);
   const ownUserProfile = await getUser(userId);

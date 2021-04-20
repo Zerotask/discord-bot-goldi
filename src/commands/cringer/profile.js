@@ -69,6 +69,13 @@ const show = async (message, userId) => {
   message.reply(response);
 };
 
+const setShowUser = async (userId, flag) => {
+  const entry = await Cringer.findOneAndUpdate({ userId }, { show: flag });
+  if (entry === null) {
+    console.log('Error setting show');
+  }
+};
+
 module.exports = {
   setDescription,
   getDescription,
@@ -80,4 +87,5 @@ module.exports = {
   getGender,
   resetProfile,
   show,
+  setShowUser,
 };
