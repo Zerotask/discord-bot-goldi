@@ -2,7 +2,7 @@ const config = require('../../config.json');
 const { Cringer } = require('../entities/cringer');
 const { shuffleArray } = require('../functions');
 
-const version = 0.9.1;
+const version = '0.9.1';
 
 const createUserIfNeeded = async (userId, name, userPool) => {
   // User does not yet exist, so create him now.
