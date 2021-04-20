@@ -2,7 +2,7 @@ const config = require('../../config.json');
 const { Cringer } = require('../entities/cringer');
 const { shuffleArray } = require('../functions');
 
-const version = '0.9.1';
+const version = '0.9.2';
 
 const createUserIfNeeded = async (userId, name, userPool) => {
   // User does not yet exist, so create him now.
@@ -293,7 +293,7 @@ module.exports = {
           if (foreignLikes.length) {
             console.log(foreignLikes);
             const response = [];
-            response.push('Deine erhaltenen Likes:');
+            response.push(`Das sind deine erhaltenen Likes (${foreignLikes.length}):`);
             foreignLikes.forEach((likeUserId) => response.push(userList.get(likeUserId).username));
             message.reply(response);
           } else {
@@ -309,7 +309,7 @@ module.exports = {
             const ownLikes = await getOwnLikes(userId);
             if (ownLikes.length) {
               const response = [];
-              response.push('Du hast folgenden User ein Like geschickt:');
+              response.push(`Das sind deine gesendeten Likes (${ownLikes.length}):`);
               ownLikes.forEach((likeUserId) => response.push(userList.get(likeUserId).username));
               message.reply(response);
             } else {
@@ -325,7 +325,7 @@ module.exports = {
             const matches = await getMatches(userId);
             if (matches.length) {
               const response = [];
-              response.push('Deine Matches:');
+              response.push(`Das sind deine Matches (${matches.length}):`);
               matches.forEach((matchUserId) => response.push(userList.get(matchUserId).username));
               message.reply(response);
             } else {
