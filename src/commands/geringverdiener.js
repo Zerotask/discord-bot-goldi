@@ -10,7 +10,7 @@ module.exports = {
       'Wenn Leute bei Schnee zuerst an Schlitten denken müssen - AUS DEM WEG, GERINGVERDIENER!',
       'Im Gegensatz zu Geld macht Liebe glücklich - AUS DEM WEG, GERINGVERDIENER!',
       'Die Firma, in der du arbeitest, trägt nicht deinen Nachnamen? - AUS DEM WEG, GERINGVERDIENER!',
-      'Wenn du bei ,,junge Sterne" an den Nachtimmer denkst - AUS DEM WEG, GERINGVERDIENER!',
+      'Wenn du bei ,,junge Sterne" an den Nachthimmel denkst - AUS DEM WEG, GERINGVERDIENER!',
       'Wenn die SUV-Mutti auf dem Weg zum BIo-Markt die Fahrradfahrer beiseite hupt - AUS DEM WEG, GERINGVERDIENER!',
       'Woran erkennst du eine meiner Partys? Du bist nicht eingeladen - AUS DEM WEG, GERINGVERDIENER!',
       'Wieso müssen eigentlich manche Kommilitonen von mir einen Studienkredit aufnehmen? Man kann doch auch einfach ein paar Aktien verkaufen - AUS DEM WEG, GERINGVERDIENER!',
