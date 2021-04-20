@@ -336,7 +336,10 @@ module.exports = {
         case 'help':
         default:
           const response = [];
+          response.push(':sparkling_heart: :sparkling_heart: Cringer - finde auch du deine große Liebe :sparkling_heart: :sparkling_heart:');
+          response.push('');
           response.push('Nachfolgende Befehle kannst du mit Cringer nutzen:');
+          response.push('');
           response.push(`**Beschreibung aktualisieren**: \`${config.commandPrefix}${this.name} beschreibung <text>\``);
           response.push(`**Beschreibung abrufen**: \`${config.commandPrefix}${this.name} beschreibung\``);
           response.push(`**Alter aktualisieren **: \`${config.commandPrefix}${this.name} alter <alter>\``);
@@ -361,8 +364,8 @@ module.exports = {
       // play cringer game
       const nextUserId = await getNextUserForCringeGame(userId, userPool);
       const nextUser = userList.get(nextUserId);
-      console.log({ nextUser });
       const nextUserProfile = await getUser(nextUserId, nextUser.username);
+      const ownUserProfile = await getUser(userId);
 
       const response = [];
       response.push(message.author);
@@ -397,7 +400,13 @@ module.exports = {
               // send DM to the liked user
               if (!nextUser.bot) {
                 try {
-                  nextUser.send(`Du hast bei Cringer ein Like von ${message.author.username} erhalten :heart:`);
+                  const dm = [];
+                  dm.push(`Du hast bei Cringer ein Like von ${ownUserProfile.name} erhalten :heart:`);
+                  dm.push(`Geschlecht: ${ownUserProfile.gender}`);
+                  dm.push(`Alter: ${ownUserProfile.age}`);
+                  dm.push(`Job: ${ownUserProfile.job}`);
+                  dm.push(`Beschreibung: ${ownUserProfile.description}`);
+                  nextUser.send(dm);
                 } catch (error) {
                   console.log(error);
                 }
