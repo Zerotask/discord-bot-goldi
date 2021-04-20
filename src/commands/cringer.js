@@ -2,7 +2,7 @@ const config = require('../../config.json');
 const { Cringer } = require('../entities/cringer');
 const { shuffleArray } = require('../functions');
 
-const version = '0.9.2';
+const version = '0.9.3';
 
 const createUserIfNeeded = async (userId, name, userPool) => {
   // User does not yet exist, so create him now.
@@ -358,7 +358,7 @@ module.exports = {
           response.push(`**Matches anzeigen**: \`${config.commandPrefix}${this.name} matches\``);
           response.push(`**Anzahl der Leute anzeigen**: \`${config.commandPrefix}${this.name} users\``);
           response.push(`**Cringer Game **: \`${config.commandPrefix}${this.name}\``);
-          message.reply(response);
+          message.channel.send(response);
       }
     } else {
       // play cringer game
