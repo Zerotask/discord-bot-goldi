@@ -3,31 +3,41 @@ const like = require('./like');
 const match = require('./match');
 const { Cringer } = require('../../entities/cringer');
 
+const refreshUserPool = async (userId, userPool) => {
+  const user = await getUser(userId);
+
+  // Reload user list
+  let nextUserId = userPool.pop();
+
+  // next user is already liked
+  // next user has set show=false
+  while (user.likes.sent.includes(nextUserId) || !(await getUser(nextUserId)).show) {
+    if (userPool.length) {
+      nextUserId = userPool.pop();
+    } else {
+      nextUserId = null;
+    }
+  }
+
+  // No user available
+  if (!userPool.length && nextUserId === null) {
+    return null;
+  }
+
+  await Cringer.findOneAndUpdate({ userId }, {
+    userPool,
+  });
+
+  return nextUserId;
+};
+
 const getNextUser = async (userId, userPool) => {
   const user = await getUser(userId);
   let nextUserId;
 
   // userPool is empty. Refresh it.
   if (!user.userPool.length) {
-    // Reload user list
-    nextUserId = userPool.pop();
-
-    // next user is already liked
-    // next user has set show=false
-    while (user.likes.sent.includes(nextUserId) || !(await getUser(nextUserId)).show) {
-      nextUserId = userPool.pop();
-    }
-
-    // No user available
-    if (!userPool.length) {
-      return null;
-    }
-
-    await Cringer.findOneAndUpdate({ userId }, {
-      userPool,
-    });
-
-    return nextUserId;
+    return refreshUserPool(userId, userPool);
   }
 
   // Get last user from pool.
@@ -36,12 +46,16 @@ const getNextUser = async (userId, userPool) => {
   // next user is already liked
   // next user has set show=false
   while (user.likes.sent.includes(nextUserId) || !(await getUser(nextUserId)).show) {
-    nextUserId = user.userPool.pop();
+    if (user.userPool.length) {
+      nextUserId = user.userPool.pop();
+    } else {
+      nextUserId = null;
+    }
   }
 
   // No user available
-  if (!user.userPool.length) {
-    return null;
+  if (!user.userPool.length && nextUserId === null) {
+    return refreshUserPool(userId, userPool);
   }
 
   // Update userPool
@@ -60,6 +74,7 @@ const play = async (message, userId, userPool, userList) => {
   }
 
   const nextUser = userList.get(nextUserId);
+  console.log({ nextUserId, nextUser });
   const nextUserProfile = await getUser(nextUserId, nextUser.username);
   const ownUserProfile = await getUser(userId);
 
