@@ -1,68 +1,70 @@
 const { getUser } = require('./functions');
 const { Cringer } = require('../../entities/cringer');
 
-const addOwnLike = async (userId, otherUserId) => {
+const addLikeSent = async (userId, otherUserId) => {
   const user = await getUser(userId);
-  const { ownLikes } = user;
-  if (!ownLikes.includes(otherUserId)) {
-    ownLikes.push(otherUserId);
+  const sentLikes = user.likes.sent;
+  if (!sentLikes.includes(otherUserId)) {
+    sentLikes.push(otherUserId);
   }
 
-  const entry = await Cringer.findOneAndUpdate({ userId }, { ownLikes });
+  const entry = await Cringer.findOneAndUpdate({ userId }, { likes: { sent: sentLikes } });
   if (entry === null) {
-    console.log('Error adding own like');
+    console.log('Error adding sent like');
   }
 };
 
-const addLikeToForeign = async (userId, otherUserId, otherName) => {
+const addLikeReceived = async (userId, otherUserId, otherName) => {
   const user = await getUser(otherUserId, otherName);
-  const { foreignLikes } = user;
-  if (!foreignLikes.includes(userId)) {
-    foreignLikes.push(userId);
+  const receivedLikes = user.likes.received;
+  if (!receivedLikes.includes(userId)) {
+    receivedLikes.push(userId);
   }
 
-  const entry = await Cringer.findOneAndUpdate({ userId: otherUserId }, { foreignLikes });
+  const entry = await Cringer.findOneAndUpdate(
+    { userId: otherUserId },
+    { likes: { received: receivedLikes } },
+  );
   if (entry === null) {
-    console.log('Error adding foreignLike to foreign user');
+    console.log('Error adding received like to foreign user');
   }
 };
 
-const resetOwnLikes = async (userId) => {
-  const entry = await Cringer.findOneAndUpdate({ userId }, { ownLikes: [] });
+const resetLikesSent = async (userId) => {
+  const entry = await Cringer.findOneAndUpdate({ userId }, { likes: { sent: [] } });
   if (entry === null) {
-    console.log('Error resetting own likes');
+    console.log('Error resetting sent likes');
   }
 };
 
-const getOwnLikes = async (userId) => {
+const getLikesSent = async (userId) => {
   const user = await getUser(userId);
-  return user.ownLikes;
+  return user.likes.sent;
 };
 
-const getForeignLikes = async (userId) => {
+const getLikesReceived = async (userId) => {
   const user = await getUser(userId);
-  return user.foreignLikes;
+  return user.likes.received;
 };
 
-const showSentLikes = async (message, userId, userList) => {
-  const ownLikes = await getOwnLikes(userId);
-  if (ownLikes.length) {
+const showLikesSent = async (message, userId, userList) => {
+  const sentLikes = await getLikesSent(userId);
+  if (sentLikes.length) {
     const response = [];
-    response.push(`Das sind deine gesendeten Likes (${ownLikes.length}):`);
-    ownLikes.forEach((likeUserId) => response.push(userList.get(likeUserId).username));
+    response.push(`Das sind deine gesendeten Likes (${sentLikes.length}):`);
+    sentLikes.forEach((likeUserId) => response.push(userList.get(likeUserId).username));
     message.reply(response);
   } else {
-    message.reply('Du hast bisher keine Person geliked :broken_heart:');
+    message.reply('Du hast bisher keiner Person ein Like geschickt :broken_heart:');
   }
 };
 
-const showReceivedLikes = async (message, userId, userList) => {
-  const foreignLikes = await getForeignLikes(userId);
-  if (foreignLikes.length) {
-    console.log(foreignLikes);
+const showLikesReceived = async (message, userId, userList) => {
+  const receivedLikes = await getLikesReceived(userId);
+  if (receivedLikes.length) {
     const response = [];
-    response.push(`Das sind deine erhaltenen Likes (${foreignLikes.length}):`);
-    foreignLikes.forEach((likeUserId) => response.push(userList.get(likeUserId).username));
+    response.push(`Das sind deine erhaltenen Likes (${receivedLikes.length}):`);
+    receivedLikes.forEach((likeUserId) => response.push(userList.get(likeUserId).username));
     message.reply(response);
   } else {
     message.reply('Du hast bisher keine Likes erhalten :broken_heart:');
@@ -70,11 +72,11 @@ const showReceivedLikes = async (message, userId, userList) => {
 };
 
 module.exports = {
-  addOwnLike,
-  addLikeToForeign,
-  resetOwnLikes,
-  getOwnLikes,
-  getForeignLikes,
-  showSentLikes,
-  showReceivedLikes,
+  addLikeSent,
+  addLikeReceived,
+  resetLikesSent,
+  getLikesSent,
+  getLikesReceived,
+  showLikesSent,
+  showLikesReceived,
 };

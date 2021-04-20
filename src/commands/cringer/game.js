@@ -60,8 +60,8 @@ const play = async (message, userId, userPool, userList) => {
       .then(async (messages) => {
         const answer = messages.first().content.toLowerCase().trim();
         if (listYes.includes(answer)) {
-          like.addLikeToForeign(userId, nextUserId, nextUser.username);
-          like.addOwnLike(userId, nextUserId);
+          like.addLikeReceived(userId, nextUserId, nextUser.username);
+          like.addLikeSent(userId, nextUserId);
           // Send to channel
           message.reply(`Du hast ${nextUser.username} ein Like geschickt :heart:`);
 
@@ -86,6 +86,13 @@ const play = async (message, userId, userPool, userList) => {
             response.push(`${message.author} und ${nextUser} haben ein Match!`);
             response.push(':sparkling_heart: :sparkling_heart: :sparkling_heart:');
             message.channel.send(response);
+
+            try {
+              nextUser.send(`Du und ${ownUserProfile.name} habt ein Cringer Match :heart: :heart: :heart:`);
+              message.author.send(`Du und ${nextUserProfile.name} habt ein Cringer Match :heart: :heart: :heart:`);
+            } catch (error) {
+              console.log(`Error sending cringer match DMs: ${error}`);
+            }
           }
         } else {
           message.channel.send('Bruder muss los :broken_heart:');

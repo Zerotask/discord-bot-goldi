@@ -7,7 +7,7 @@ const game = require('./cringer/game');
 const help = require('./cringer/help');
 const premium = require('./cringer/premium');
 
-const version = '0.10.0';
+const version = '0.10.1';
 
 module.exports = {
   name: 'cringer',
@@ -89,7 +89,7 @@ module.exports = {
         case 'user':
         case 'leute':
         case 'verfügbar':
-          message.reply(`Es gibt insgesamt ${message.channel.guild.memberCount} Leute. Du hast noch ${(await getUser(userId)).userPool.length} zum liken. Danach fängt es wieder von vorne an.`);
+          message.reply(`Es gibt insgesamt ${message.channel.guild.memberCount} Leute. Du hast noch ${(await functions.getUser(userId)).userPool.length} zum liken. Danach fängt es wieder von vorne an.`);
           break;
         case 'version':
           message.reply(`Die Cringer-Version ist: ${version}`);
@@ -100,16 +100,18 @@ module.exports = {
           message.reply('Dein Profil, deine eigenen Likes und deine Matches wurden zurückgesetzt.');
           break;
         case 'likes':
-        case 'foreign-likes':
-          like.showReceivedLikes(message, userId, userList);
+        case 'received-likes':
+        case 'likes-received':
+          like.showLikesReceived(message, userId, userList);
           break;
         case 'liked':
-        case 'own-likes':
+        case 'sent-likes':
+        case 'likes-sent':
           if (args[1] && (args[1].toLowerCase() === 'reset' || args[1].toLowerCase() === 'zurücksetzen')) {
-            like.resetOwnLikes(userId);
+            like.resetLikesSent(userId);
             message.reply('deine eigenen Likes wurden zurückgesetzt.');
           } else {
-            like.showSentLikes(message, userId, userList);
+            like.showLikesSent(message, userId, userList);
           }
           break;
         case 'matches':
@@ -141,7 +143,7 @@ module.exports = {
           break;
         case 'help':
         default:
-          help.show(message);
+          help.show(message, this.name);
       }
     } else {
       game.play(message, userId, userPool, userList);

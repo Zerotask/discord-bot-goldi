@@ -32,8 +32,12 @@ const CringerSchema = new mongoose.Schema({
     default: '-nicht angegeben-',
     trim: true,
   },
-  ownLikes: [String],
-  foreignLikes: [String],
+  likes: {
+    sent: [String],
+    received: [String],
+  },
+  // sentLike: [String],
+  // receivedLikes: [String],
   matches: [String],
   userPool: [String],
 });

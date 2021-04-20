@@ -18,10 +18,18 @@ client.commands = new Discord.Collection();
 // Register commands.
 const commandsPath = path.resolve('./src/commands');
 const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith('.js'));
-for (const file of commandFiles) {
+commandFiles.forEach((file) => {
   const command = require(`${commandsPath}/${file}`);
   client.commands.set(command.name, command);
-}
+});
+// for (const file of commandFiles) {
+//   const command = require(`${commandsPath}/${file}`);
+//   client.commands.set(command.name, command);
+// }
+
+// Start the bot.
+// Discord dev: @see https://discord.com/developers/applications
+client.login(process.env.DISCORD_BOT_TOKEN);
 
 client.on('ready', () => {
   console.log(`Connected as ${client.user.tag}`);
@@ -38,7 +46,3 @@ client.on('message', (message) => {
   reactToEmojis(message);
   reactToCommands(client, message);
 });
-
-// Start the bot.
-// Discord dev: @see https://discord.com/developers/applications
-client.login(process.env.DISCORD_BOT_TOKEN);
