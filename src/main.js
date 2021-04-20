@@ -24,12 +24,17 @@ for (const file of commandFiles) {
 
 const reactToEmojis = (message) => {
   const lowerCaseContent = message.content.toLowerCase();
+  console.log(lowerCaseContent);
   if (lowerCaseContent.includes('kappa')) {
     message.channel.send('https://i.kym-cdn.com/photos/images/newsfeed/000/925/494/218.png_large');
   } else if (lowerCaseContent.includes('lul')) {
     message.channel.send('https://freepngimg.com/thumb/league_of_legends/85483-twitch-emote-face-facial-john-expression-bain.png');
   } else if (lowerCaseContent.includes('pogchamp')) {
     message.channel.send('https://freepngimg.com/thumb/mouth/92712-ear-head-twitch-pogchamp-emote-free-download-png-hq-thumb.png');
+  } else if (lowerCaseContent.includes('feelsbadman')) {
+    message.channel.send('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTt9RC-fEDF3xBlO3rRUGFzdX3T25ipBlHq9Q&usqp=CAU');
+  } else if (lowerCaseContent.includes('🥳')) {
+    message.channel.send(':partying_face: :partying_face: :partying_face:');
   }
 };
 
