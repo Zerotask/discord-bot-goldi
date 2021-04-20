@@ -2,7 +2,7 @@ const config = require('../../config.json');
 const { Cringer } = require('../entities/cringer');
 const { shuffleArray } = require('../functions');
 
-const version = 0.9;
+const version = 0.9.1;
 
 const createUserIfNeeded = async (userId, name, userPool) => {
   // User does not yet exist, so create him now.
@@ -350,8 +350,10 @@ module.exports = {
           response.push(`**Alles zurücksetzen**: \`${config.commandPrefix}${this.name} reset\``);
           response.push(`**Cringer-Version abfragen**: \`${config.commandPrefix}${this.name} version\``);
           response.push(`**Gesendete Likes anzeigen**: \`${config.commandPrefix}${this.name} liked\``);
+          response.push(`**Gesendete Likes zurücksetzen**: \`${config.commandPrefix}${this.name} liked reset\``);
           response.push(`**Erhaltene Likes anzeigen**: \`${config.commandPrefix}${this.name} likes\``);
           response.push(`**Matches anzeigen**: \`${config.commandPrefix}${this.name} matches\``);
+          response.push(`**Anzahl der Leute anzeigen**: \`${config.commandPrefix}${this.name} users\``);
           response.push(`**Cringer Game **: \`${config.commandPrefix}${this.name}\``);
           message.reply(response);
       }
