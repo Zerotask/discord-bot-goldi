@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const CringerSchema = new mongoose.Schema({
-  userId: String,
+  userId: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   name: {
     type: String,
     required: true,

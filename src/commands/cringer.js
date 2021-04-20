@@ -291,12 +291,10 @@ module.exports = {
         case 'foreign-likes':
           const foreignLikes = await getForeignLikes(userId);
           if (foreignLikes.length) {
+            console.log(foreignLikes);
             const response = [];
             response.push('Deine erhaltenen Likes:');
-            for (const foreignLike of foreignLikes) {
-              const user = userList.get(foreignLike);
-              response.push(user);
-            }
+            foreignLikes.forEach((likeUserId) => response.push(userList.get(likeUserId).username));
             message.reply(response);
           } else {
             message.reply('Du hast bisher keine Likes erhalten :broken_heart:');
@@ -312,10 +310,7 @@ module.exports = {
             if (ownLikes.length) {
               const response = [];
               response.push('Du hast folgenden User ein Like geschickt:');
-              for (const ownLike of ownLikes) {
-                const user = userList.get(ownLike);
-                response.push(user);
-              }
+              ownLikes.forEach((likeUserId) => response.push(userList.get(likeUserId).username));
               message.reply(response);
             } else {
               message.reply('Du hast bisher keine Person geliked :broken_heart:');
@@ -331,10 +326,7 @@ module.exports = {
             if (matches.length) {
               const response = [];
               response.push('Deine Matches:');
-              for (const match of matches) {
-                const user = userList.get(match);
-                response.push(user);
-              }
+              matches.forEach((matchUserId) => response.push(userList.get(matchUserId).username));
               message.reply(response);
             } else {
               message.reply('Du hast bisher keine Cringer Matches :broken_heart:');
@@ -395,14 +387,18 @@ module.exports = {
           .then(async (messages) => {
             const answer = messages.first().content.toLowerCase().trim();
             if (listYes.includes(answer)) {
-              addLikeToForeign(userId, nextUserId);
+              addLikeToForeign(userId, nextUserId, nextUser.username);
               addOwnLike(userId, nextUserId);
               // Send to channel
               message.reply(`Du hast ${nextUser.username} ein Like geschickt :heart:`);
 
               // send DM to the liked user
               if (!nextUser.bot) {
-                nextUser.send(`Du hast bei Cringer ein Like von ${message.author} erhalten :heart:`);
+                try {
+                  nextUser.send(`Du hast bei Cringer ein Like von ${message.author.username} erhalten :heart:`);
+                } catch (error) {
+                  console.log(error);
+                }
               }
 
               if (await isMatch(userId, nextUserId)) {
