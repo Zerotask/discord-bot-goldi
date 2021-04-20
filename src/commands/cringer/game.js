@@ -128,6 +128,7 @@ const play = async (message, userId, userPool, userList) => {
             response.push(':sparkling_heart: :sparkling_heart: :sparkling_heart:');
             response.push(`${message.author} und ${nextUser} haben ein Match!`);
             response.push(':sparkling_heart: :sparkling_heart: :sparkling_heart:');
+            response.push(message.author.avatarURL());
             message.channel.send(response);
 
             try {
