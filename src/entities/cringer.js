@@ -36,8 +36,6 @@ const CringerSchema = new mongoose.Schema({
     sent: [String],
     received: [String],
   },
-  // sentLike: [String],
-  // receivedLikes: [String],
   matches: [String],
   userPool: [String],
 });
