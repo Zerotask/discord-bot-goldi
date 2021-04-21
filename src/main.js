@@ -45,13 +45,12 @@ client.on('ready', () => {
 
   // Monday reminder
   cron.schedule('0 10 * * 1', () => {
-    // mainChannel.send('Ich wünsche euch allen einen guten Start in die Woche :blush: Bleibt alle gesund!');
+    mainChannel.send('Ich wünsche euch allen einen guten Start in die Woche :blush: Bleibt alle gesund!');
   }, cronOptions);
 
   // Wednesday reminder
   cron.schedule('0 14 * * 3', () => {
     mainChannel.send('It is wednesday my dudes :frog: :frog: :frog:');
-    console.log('It is wednesday my dudes :frog: :frog: :frog:');
   });
 
   // Friday reminder
