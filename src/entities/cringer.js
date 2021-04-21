@@ -11,7 +11,6 @@ const CringerSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    required: true,
     trim: true,
   },
   gender: {
