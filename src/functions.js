@@ -73,6 +73,24 @@ const reactToCommands = (client, message) => {
   }
 };
 
+const reactToMessages = (message) => {
+  const lowerCaseContent = message.content.toLowerCase();
+
+  if (lowerCaseContent.includes('moin goldi')) {
+    message.reply('moin moin :blush:');
+  } else if (lowerCaseContent.includes('dir auch goldi')) {
+    message.reply('danke hihi :blush:');
+  } else if (lowerCaseContent.includes('wie gehts goldi') || lowerCaseContent.includes('wie geht\'s goldi') || lowerCaseContent.includes('wie geht\'s dir goldi')) {
+    message.reply('Mir geht es gut. Lieb, dass du fragst :blush: Wie geht es dir?');
+  }
+};
+
 module.exports = {
-  getRandomNumber, getUserFromMention, shuffleArray, isMod, reactToEmojis, reactToCommands,
+  getRandomNumber,
+  getUserFromMention,
+  shuffleArray,
+  isMod,
+  reactToEmojis,
+  reactToCommands,
+  reactToMessages,
 };

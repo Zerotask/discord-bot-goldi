@@ -10,7 +10,7 @@ const path = require('path');
 const Discord = require('discord.js');
 const cron = require('node-cron');
 const config = require('../config.json');
-const { reactToEmojis, reactToCommands } = require('./functions');
+const { reactToEmojis, reactToCommands, reactToMessages } = require('./functions');
 
 // Init discord
 const client = new Discord.Client();
@@ -79,4 +79,5 @@ client.on('message', (message) => {
 
   reactToEmojis(message);
   reactToCommands(client, message);
+  reactToMessages(message);
 });
