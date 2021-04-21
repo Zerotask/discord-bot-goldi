@@ -12,10 +12,7 @@ const outputEvents = (message, events) => {
   const output = [];
   const date = new Date();
   output.push(`Hier sind ${events.length} zufällige historische Ereignisse für den heutigen Tag (${date.getDate()}.${date.getMonth() + 1}):`);
-  for (const event of events) {
-    output.push(`${event.year}: ${event.text}`);
-  }
-
+  events.forEach((event) => output.push(`${event.year}: ${event.text}`));
   message.channel.send(output);
 };
 

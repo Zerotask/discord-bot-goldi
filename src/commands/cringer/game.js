@@ -3,7 +3,7 @@ const like = require('./like');
 const match = require('./match');
 const { Cringer } = require('../../entities/cringer');
 
-const refreshUserPool = async (userId, userPool) => {
+const refreshUserPool = async (userId, userPool, userList) => {
   const user = await getUser(userId);
 
   // Reload user list
@@ -11,7 +11,8 @@ const refreshUserPool = async (userId, userPool) => {
 
   // next user is already liked
   // next user has set show=false
-  while (user.likes.sent.includes(nextUserId) || !(await getUser(nextUserId)).show) {
+  while (user.likes.sent.includes(nextUserId)
+  || !(await getUser(nextUserId, userList.get(nextUserId).username)).show) {
     if (userPool.length) {
       nextUserId = userPool.pop();
     } else {
@@ -31,13 +32,13 @@ const refreshUserPool = async (userId, userPool) => {
   return nextUserId;
 };
 
-const getNextUser = async (userId, userPool) => {
+const getNextUser = async (userId, userPool, userList) => {
   const user = await getUser(userId);
   let nextUserId;
 
   // userPool is empty. Refresh it.
   if (!user.userPool.length) {
-    return refreshUserPool(userId, userPool);
+    return refreshUserPool(userId, userPool, userList);
   }
 
   // Get last user from pool.
@@ -45,7 +46,8 @@ const getNextUser = async (userId, userPool) => {
 
   // next user is already liked
   // next user has set show=false
-  while (user.likes.sent.includes(nextUserId) || !(await getUser(nextUserId)).show) {
+  while (user.likes.sent.includes(nextUserId)
+  || !(await getUser(nextUserId, userList.get(nextUserId).username)).show) {
     if (user.userPool.length) {
       nextUserId = user.userPool.pop();
     } else {
@@ -67,7 +69,7 @@ const getNextUser = async (userId, userPool) => {
 };
 
 const play = async (message, userId, userPool, userList) => {
-  const nextUserId = await getNextUser(userId, userPool);
+  const nextUserId = await getNextUser(userId, userPool, userList);
   if (nextUserId === null) {
     message.reply('Sorry, aber du hast bereits alle User in diesem Discord-Server geliked LUL');
     return;

@@ -1,10 +1,11 @@
 const config = require('../config.json');
 
-const getRandomNumber = (minimum, maximum) => Math.floor(Math.random() * (maximum - minimum)) + minimum;
+const getRandomNumber = (minimum, maximum) => Math.floor(Math.random()
+  * (maximum - minimum)) + minimum;
 
 const getUserFromMention = (client, mention) => {
   if (!mention) {
-    return;
+    return null;
   }
 
   if (mention.startsWith('<@') && mention.endsWith('>')) {
@@ -16,19 +17,18 @@ const getUserFromMention = (client, mention) => {
 
     return client.users.cache.get(userId);
   }
+
+  return null;
 };
 
+/**
+ * Shuffles array in place. ES6 version
+ * @param {Array} a items An array containing the items.
+ */
 const shuffleArray = (array) => {
-  let curId = array.length;
-  // There remain elements to shuffle
-  while (curId !== 0) {
-    // Pick a remaining element
-    const randId = Math.floor(Math.random() * curId);
-    curId -= 1;
-    // Swap it with the current element.
-    const tmp = array[curId];
-    array[curId] = array[randId];
-    array[randId] = tmp;
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
 };
@@ -75,7 +75,6 @@ const reactToCommands = (client, message) => {
 
 const reactToMessages = (message) => {
   const lowerCaseContent = message.content.toLowerCase();
-
   if (lowerCaseContent.includes('moin goldi') || lowerCaseContent.includes('hi goldi') || lowerCaseContent.includes('hallo goldi') || lowerCaseContent.includes('hey goldi')) {
     message.reply('moin moin :blush:');
   } else if (lowerCaseContent.includes('dir auch goldi')) {

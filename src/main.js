@@ -40,8 +40,8 @@ client.on('ready', () => {
   // const botTestingChannel = client.channels.cache.get('803680168991916112');
 
   const cronOptions = {
-   timezone: "Europe/Berlin"
- }
+    timezone: 'Europe/Berlin',
+  };
 
   // Monday reminder
   cron.schedule('0 10 * * 1', () => {
