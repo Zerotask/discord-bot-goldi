@@ -76,7 +76,7 @@ const reactToCommands = (client, message) => {
 const reactToMessages = (message) => {
   const lowerCaseContent = message.content.toLowerCase();
 
-  if (lowerCaseContent.includes('moin goldi')) {
+  if (lowerCaseContent.includes('moin goldi') || lowerCaseContent.includes('hi goldi') || lowerCaseContent.includes('hallo goldi') || lowerCaseContent.includes('hey goldi')) {
     message.reply('moin moin :blush:');
   } else if (lowerCaseContent.includes('dir auch goldi')) {
     message.reply('danke hihi :blush:');
