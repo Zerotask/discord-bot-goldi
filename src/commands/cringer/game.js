@@ -108,21 +108,6 @@ const play = async (message, userId, userPool, userList) => {
           // Send to channel
           message.reply(`Du hast ${nextUser.username} ein Like geschickt :heart:`);
 
-          // send DM to the liked user
-          if (!nextUser.bot) {
-            try {
-              const dm = [];
-              dm.push(`Du hast bei Cringer ein Like von ${ownUserProfile.name} erhalten :heart:`);
-              dm.push(`Geschlecht: ${ownUserProfile.gender}`);
-              dm.push(`Alter: ${ownUserProfile.age}`);
-              dm.push(`Job: ${ownUserProfile.job}`);
-              dm.push(`Beschreibung: ${ownUserProfile.description}`);
-              nextUser.send(dm);
-            } catch (error) {
-              console.log(error);
-            }
-          }
-
           if (await match.isMatch(userId, nextUserId)) {
             response = [];
             response.push(':sparkling_heart: :sparkling_heart: :sparkling_heart:');
@@ -132,6 +117,7 @@ const play = async (message, userId, userPool, userList) => {
             message.channel.send(response);
 
             try {
+              // Send a DM to both, if they have a match.
               nextUser.send(`Du und ${ownUserProfile.name} habt ein Cringer Match :heart: :heart: :heart:`);
               message.author.send(`Du und ${nextUserProfile.name} habt ein Cringer Match :heart: :heart: :heart:`);
             } catch (error) {
