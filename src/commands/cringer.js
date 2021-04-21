@@ -7,7 +7,7 @@ const game = require('./cringer/game');
 const help = require('./cringer/help');
 const premium = require('./cringer/premium');
 
-const version = '0.10.2';
+const version = '0.10.3';
 
 module.exports = {
   name: 'cringer',

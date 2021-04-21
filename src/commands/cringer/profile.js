@@ -59,20 +59,24 @@ const resetProfile = async (userId) => {
 const show = async (message, userId) => {
   const user = await getUser(userId);
   const response = [];
-  response.push('dein Cringer-Profil:');
+  response.push(`<@${userId}>`);
+  response.push('**Dein Cringer-Profil:**');
+  response.push('');
   response.push(`Name: ${user.name}`);
   response.push(`Geschlecht: ${user.gender || '-nicht angegeben-'}`);
-  response.push(`Alter: ${user.age}`);
-  response.push(`Job: ${user.job}`);
-  response.push(`Beschreibung: ${user.description}`);
+  response.push(`Alter: ${user.age || '-nicht angegeben-'}`);
+  response.push(`Job: ${user.job || '-nicht angegeben-'}`);
+  response.push(`Beschreibung: ${user.description || '-nicht angegeben-'}`);
   response.push(message.author.avatarURL());
   response.push('');
   if (user.show) {
     response.push('*Du wirst in der Suche angezeigt* :eyes:');
+    response.push('*Mit `!cringer hide` kannst du einstellen, dass du nicht mehr in der Suche angezeigt wirst.*');
   } else {
     response.push('*Du wirst in der Suche nicht angezeigt* :x:');
+    response.push('*Mit `!cringer show` kannst du einstellen, dass du wieder in der Suche angezeigt wirst.*');
   }
-  message.reply(response);
+  message.channel.send(response);
 };
 
 const setShowUser = async (userId, flag) => {
