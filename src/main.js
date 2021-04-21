@@ -37,6 +37,7 @@ client.on('ready', () => {
   client.user.setActivity(config.defaultActivity);
 
   const mainChannel = client.channels.cache.get('575701911433510912');
+  // const botTestingChannel = client.channels.cache.get('803680168991916112');
 
   // Monday reminder
   cron.schedule('* 10 * * 1', () => {
@@ -51,6 +52,17 @@ client.on('ready', () => {
   // Friday reminder
   cron.schedule('* 18 * * 5', () => {
     mainChannel.send('ich wünsche euch allen einen schönes Wochenende :partying_face:');
+  });
+
+  // Sunday reminder
+  cron.schedule('* 20 * * 7', () => {
+    const info = [];
+    info.push('ich hoffe, dass ihr alle eine tolle Woche hattet! :blush:');
+    info.push('Falls ihr wissen wollt, mit welchen Kommandos ihr mich benutzen könnt, schreibt einfach !commands in den Chat.');
+    info.push('Wollt ihr wissen, an welchen Tagen und welches Spiel gestreamt wird? Dann klickt einfach hier: <#810479229607084062>');
+    info.push('Du bist eher der cringe Typ? Dann komm doch in den Channel <#833389402532216873>. Für weitere Information !cringer help');
+    info.push('Die Regeln findet ihr hier: <#803677596898164786>. Falls jemand dagegen verstößt oder euch belästigt, könnt ihr mit !report denjenigen melden, z. B. `!report @Goldi hat mir unanständige Nachrichten geschickt`');
+    mainChannel.send(info);
   });
 });
 
