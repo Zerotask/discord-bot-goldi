@@ -7,7 +7,7 @@ const game = require('./cringer/game');
 const help = require('./cringer/help');
 const premium = require('./cringer/premium');
 
-const version = '0.10.3';
+const version = '0.10.4';
 
 module.exports = {
   name: 'cringer',
@@ -50,9 +50,9 @@ module.exports = {
           if (args[1]) {
             const age = Math.min(150, Math.max(0, parseInt(args[1], 10)));
             profile.setAge(userId, age);
-            message.reply(`deiner neues Alter ist: ${age}`);
+            message.reply(`dein neues Alter ist: ${age} Jahre`);
           } else {
-            message.reply(`deiner Alter ist: ${await profile.getAge(userId)}`);
+            message.reply(`dein Alter ist: ${await profile.getAge(userId)} Jahre`);
           }
           break;
         case 'job':
@@ -89,7 +89,7 @@ module.exports = {
         case 'user':
         case 'leute':
         case 'verfügbar':
-          message.reply(`Es gibt insgesamt ${message.channel.guild.memberCount} Leute. Du hast noch ${(await functions.getUser(userId)).userPool.length} zum liken. Danach fängt es wieder von vorne an.`);
+          message.reply(`Es gibt insgesamt ${message.channel.guild.memberCount} Leute. Du hast noch ${(await functions.getUser(userId)).userPool.length} zum Liken. Danach fängt es wieder von vorne an.`);
           break;
         case 'version':
           message.reply(`Die Cringer-Version ist: ${version}`);
@@ -97,7 +97,7 @@ module.exports = {
         case 'reset':
         case 'zurücksetzen':
           functions.reset(userId);
-          message.reply('Dein Profil, deine eigenen Likes und deine Matches wurden zurückgesetzt.');
+          message.reply('Dein Profil, deine gesendeten Likes und deine Matches wurden zurückgesetzt.');
           break;
         case 'likes':
         case 'received-likes':
@@ -109,7 +109,7 @@ module.exports = {
         case 'likes-sent':
           if (args[1] && (args[1].toLowerCase() === 'reset' || args[1].toLowerCase() === 'zurücksetzen')) {
             like.resetLikesSent(userId);
-            message.reply('deine eigenen Likes wurden zurückgesetzt.');
+            message.reply('deine gesendeten Likes wurden zurückgesetzt.');
           } else {
             like.showLikesSent(message, userId, userList);
           }
@@ -118,7 +118,7 @@ module.exports = {
         case 'match':
           if (args[1] && (args[1].toLowerCase() === 'reset' || args[1].toLowerCase() === 'zurücksetzen')) {
             match.resetMatches(userId);
-            message.reply('deine Matches wurde zurückgesetzt.');
+            message.reply('deine Matches wurden zurückgesetzt.');
           } else {
             const matches = await match.getMatches(userId);
             if (matches.length) {
@@ -132,7 +132,11 @@ module.exports = {
           }
           break;
         case 'premium':
-          premium.show(message);
+          if (args[1] && (args[1].toLowerCase() === 'buy' || args[1].toLowerCase() === 'kaufen')) {
+            message.reply('Du G E R I N G V E R D I E N E R hast leider zu wenig Bitcoins, um dir das zu leisten.');
+          } else {
+            premium.show(message);
+          }
           break;
         case 'off':
         case 'hide':

@@ -62,10 +62,10 @@ const show = async (message, userId) => {
   response.push(`<@${userId}>`);
   response.push('**Dein Cringer-Profil:**');
   response.push('');
-  response.push(`Name: ${user.name}`);
-  response.push(`Geschlecht: ${user.gender || '-nicht angegeben-'}`);
-  response.push(`Alter: ${user.age || '-nicht angegeben-'}`);
-  response.push(`Job: ${user.job || '-nicht angegeben-'}`);
+  response.push(`Name:         ${user.name}`);
+  response.push(`Geschlecht:   ${user.gender || '-nicht angegeben-'}`);
+  response.push(`Alter:        ${user.age || '-nicht angegeben-'}`);
+  response.push(`Job:          ${user.job || '-nicht angegeben-'}`);
   response.push(`Beschreibung: ${user.description || '-nicht angegeben-'}`);
   response.push(message.author.avatarURL());
   response.push('');

@@ -86,14 +86,14 @@ const play = async (message, userId, userPool, userList) => {
   response.push('');
   response.push(`Name: ${nextUser.username}`);
   if (nextUserProfile !== null) {
-    response.push(`Geschlecht: ${nextUserProfile.gender}`);
-    response.push(`Alter: ${nextUserProfile.age}`);
-    response.push(`Job: ${nextUserProfile.job}`);
+    response.push(`Geschlecht:   ${nextUserProfile.gender}`);
+    response.push(`Alter:        ${nextUserProfile.age}`);
+    response.push(`Job:          ${nextUserProfile.job}`);
     response.push(`Beschreibung: ${nextUserProfile.description}`);
   }
 
   response.push(nextUser.avatarURL());
-  response.push(':arrow_right: Schreibe: Ja oder Nein');
+  response.push(':arrow_right: Schreibe: **Ja** oder **Nein**');
 
   // Send message and wait for user's reply.
   message.channel.send(response).then(() => {
