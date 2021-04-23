@@ -84,7 +84,7 @@ const play = async (message, userId, userPool, userList) => {
   response.push(message.author);
   response.push(':sparkling_heart: :sparkling_heart: Cringer - finde auch du deine große Liebe :sparkling_heart: :sparkling_heart:');
   response.push('');
-  response.push(`Name: ${nextUser.username}`);
+  response.push(`Name:         ${nextUser.username}`);
   if (nextUserProfile !== null) {
     response.push(`Geschlecht:   ${nextUserProfile.gender}`);
     response.push(`Alter:        ${nextUserProfile.age}`);
