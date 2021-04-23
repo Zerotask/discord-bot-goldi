@@ -58,7 +58,7 @@ client.on('ready', () => {
   cron.schedule('0 20 * * 7', () => {
     const info = [];
     info.push('ich hoffe, dass ihr alle eine tolle Woche hattet! :blush:');
-    info.push('Falls ihr wissen wollt, mit welchen Kommandos ihr mich benutzen könnt, schreibt einfach `!commands` oder `!help` in den Chat.');
+    info.push('Falls ihr wissen wollt, mit welchen Befehlen ihr mich benutzen könnt, schreibt einfach `!commands` oder `!help` in den Chat.');
     info.push('Wollt ihr wissen, an welchen Tagen und welches Spiel gestreamt wird? Dann klickt einfach hier: <#810479229607084062>');
     info.push('Du bist eher der cringe Typ? Dann komm doch in den Channel <#833389402532216873>. Für weitere Information schreibe `!cringer help`');
     info.push('Die Regeln findet ihr hier: <#803677596898164786>. Falls jemand dagegen verstößt oder euch belästigt, könnt ihr mit !report denjenigen melden, z. B. `!report @Goldi hat mir unanständige Nachrichten geschickt`');

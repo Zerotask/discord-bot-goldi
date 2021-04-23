@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 const { getUser } = require('./functions');
 const { Cringer } = require('../../entities/cringer');
 
@@ -58,25 +59,27 @@ const resetProfile = async (userId) => {
 
 const show = async (message, userId) => {
   const user = await getUser(userId);
-  const response = [];
-  response.push(`<@${userId}>`);
-  response.push('**Dein Cringer-Profil:**');
-  response.push('');
-  response.push(`Name:         ${user.name}`);
-  response.push(`Geschlecht:   ${user.gender || '-nicht angegeben-'}`);
-  response.push(`Alter:        ${user.age || '-nicht angegeben-'}`);
-  response.push(`Job:          ${user.job || '-nicht angegeben-'}`);
-  response.push(`Beschreibung: ${user.description || '-nicht angegeben-'}`);
-  response.push(message.author.avatarURL());
-  response.push('');
+
+  const embedResponse = new Discord.MessageEmbed()
+    .setColor('#de2600')
+    .setTitle(':sparkling_heart: :sparkling_heart: Dein Cringer-Profil :sparkling_heart: :sparkling_heart:')
+    .setThumbnail(message.author.avatarURL())
+    .addFields(
+      { name: 'Name', value: user.name, inline: true },
+      { name: 'Geschlecht', value: user.gender, inline: true },
+      { name: 'Alter', value: user.age, inline: true },
+      { name: 'Job', value: user.job },
+      { name: 'Beschreibung', value: user.description },
+      { name: '\u200B', value: '\u200B' }, // blank line
+    );
+
   if (user.show) {
-    response.push('*Du wirst in der Suche angezeigt* :eyes:');
-    response.push('*Mit `!cringer hide` kannst du einstellen, dass du nicht mehr in der Suche angezeigt wirst.*');
+    embedResponse.addField('*Du wirst in der Suche angezeigt* :eyes:', '*Mit `!cringer hide` kannst du einstellen, dass du nicht mehr in der Suche angezeigt wirst.*');
   } else {
-    response.push('*Du wirst in der Suche nicht angezeigt* :x:');
-    response.push('*Mit `!cringer show` kannst du einstellen, dass du wieder in der Suche angezeigt wirst.*');
+    embedResponse.addField('*Du wirst in der Suche nicht angezeigt* :x:', '*Mit `!cringer show` kannst du einstellen, dass du wieder in der Suche angezeigt wirst.*');
   }
-  message.channel.send(response);
+
+  message.channel.send(embedResponse);
 };
 
 const setShowUser = async (userId, flag) => {

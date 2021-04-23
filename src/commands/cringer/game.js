@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 const { getUser } = require('./functions');
 const like = require('./like');
 const match = require('./match');
@@ -76,27 +77,25 @@ const play = async (message, userId, userPool, userList) => {
   }
 
   const nextUser = userList.get(nextUserId);
-  console.log({ nextUserId, nextUser });
   const nextUserProfile = await getUser(nextUserId, nextUser.username);
   const ownUserProfile = await getUser(userId);
 
-  let response = [];
-  response.push(message.author);
-  response.push(':sparkling_heart: :sparkling_heart: Cringer - finde auch du deine große Liebe :sparkling_heart: :sparkling_heart:');
-  response.push('');
-  response.push(`Name:         ${nextUser.username}`);
-  if (nextUserProfile !== null) {
-    response.push(`Geschlecht:   ${nextUserProfile.gender}`);
-    response.push(`Alter:        ${nextUserProfile.age}`);
-    response.push(`Job:          ${nextUserProfile.job}`);
-    response.push(`Beschreibung: ${nextUserProfile.description}`);
-  }
+  // @see https://discordjs.guide/popular-topics/embeds.html#embed-preview
+  const embedResponse = new Discord.MessageEmbed()
+    .setColor('#de2600')
+    .setTitle(':sparkling_heart: :sparkling_heart: Cringer - finde auch du deine große Liebe :sparkling_heart: :sparkling_heart:')
+    .setThumbnail(nextUser.avatarURL())
+    .addFields(
+      { name: 'Name', value: nextUser.username, inline: true },
+      { name: 'Geschlecht', value: nextUserProfile.gender, inline: true },
+      { name: 'Alter', value: nextUserProfile.age, inline: true },
+      { name: 'Job', value: nextUserProfile.job },
+      { name: 'Beschreibung', value: nextUserProfile.description },
+      { name: '\u200B', value: '\u200B' }, // blank line
+      { name: 'Gefällt dir diese Person?', value: 'Schreibe **Ja** oder **Nein**' },
+    );
 
-  response.push(nextUser.avatarURL());
-  response.push(':arrow_right: Schreibe: **Ja** oder **Nein**');
-
-  // Send message and wait for user's reply.
-  message.channel.send(response).then(() => {
+  message.channel.send(embedResponse).then(() => {
     const filter = (m) => message.author.id === m.author.id;
     const listYes = ['ja', 'jaa', 'jo', 'jaaa', 'jaaaa', 'jaaaaa', 'jep', 'jip', 'jap', 'na klar', 'yes', 'jop', 'love', 'like', 'liebe', 'j', 'y'];
 
@@ -111,7 +110,7 @@ const play = async (message, userId, userPool, userList) => {
           message.reply(`Du hast ${nextUser.username} ein Like geschickt :heart:`);
 
           if (await match.isMatch(userId, nextUserId)) {
-            response = [];
+            const response = [];
             response.push(':sparkling_heart: :sparkling_heart: :sparkling_heart:');
             response.push(`${message.author} und ${nextUser} haben ein Match!`);
             response.push(':sparkling_heart: :sparkling_heart: :sparkling_heart:');

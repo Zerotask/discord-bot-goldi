@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 const config = require('../../config.json');
 
 module.exports = {
@@ -7,7 +8,7 @@ module.exports = {
   usage: '[command name]',
   execute(message, args, client) {
     const { commands } = client;
-    const response = [];
+    let response = [];
     const prefix = config.commandPrefix;
 
     response.push(message.author);
@@ -21,23 +22,32 @@ module.exports = {
       if (!command) {
         return message.channel.send('Das ist kein gültiger command.');
       }
-      response.push(`**Command:** ${command.name}`);
+      const embedFields = [];
       if (command.aliases) {
-        response.push(`**Aliases:** ${command.aliases.join(', ')}`);
+        embedFields.push({ name: 'Aliases', value: command.aliases.join(', ') });
       }
 
       if (command.description) {
-        response.push(`**Beschreibung:** ${command.description}`);
+        embedFields.push({ name: 'Beschreibung', value: command.description });
       }
 
-      response.push(`**Beispiel:** ${prefix}${command.name} ${command.example || ''}`);
+      embedFields.push({ name: 'Beispiel', value: `\`${prefix}${command.name} ${command.example || ''}\`` });
+
+      response = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle(`Hilfe für den Befehl \`${command.name}\` :blush:`)
+        .addFields(embedFields);
     } else {
       // General help information
-      response.push('Hier ist eine Liste mit allen commands, mit denen du mich benutzen kannst:');
-      response.push(commands.map((command) => prefix + command.name).join(', '));
-      response.push(`Du kannst auch ${prefix}help <command> nutzen, um weitere Informationen zu erhalten, z. B. \`!help report\` :)`);
+      response = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setTitle('Übersicht über alle meine Befehle :blush:')
+        .addFields(
+          { name: 'Befehle', value: commands.map((command) => prefix + command.name).join(', ') },
+          { name: 'Hilfe zu einem bestimmten Befehl', value: `Du kannst auch ${prefix}help <command> nutzen, um weitere Informationen zu erhalten, z. B. \`!help report\` :)` },
+        );
     }
 
-    return message.channel.send(response, { split: true });
+    return message.channel.send(response);
   },
 };
