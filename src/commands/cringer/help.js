@@ -27,6 +27,8 @@ const show = (message, commandName) => {
   response.push(`**In der Suche nicht mehr angezeigt werden**: \`${config.commandPrefix}${commandName} hide\``);
   response.push(`**In der Suche angezeigt werden**: \`${config.commandPrefix}${commandName} show\``);
   response.push(`**Cringer Game **: \`${config.commandPrefix}${commandName}\``);
+  response.push('');
+  response.push('Beim eigentlichen Cringer game (`!cringer`) werden dir zufällige Leute von diesem Discord-Server angezeigt. Du hast dann **60 Sekunden** Zeit, um **Ja** zu schreiben, falls dir die Person gefällt. Bei einer anderen oder keiner Antwort, wird es als **Nein** gewertet. Hast du der anderen Person ein Like gesendet, wird sie darüber **nicht** informiert, jedoch kann sie die erhaltenen Likes mit `!cringer likes` abrufen. Erst sobald 2 Personen ein Match haben, werden sie zusätzlich zu einer Chat-Nachricht auch via Direktnachricht (DM) darüber informiert.');
   message.channel.send(response);
 };
 
