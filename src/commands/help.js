@@ -35,7 +35,7 @@ module.exports = {
       // General help information
       response.push('Hier ist eine Liste mit allen commands, mit denen du mich benutzen kannst:');
       response.push(commands.map((command) => prefix + command.name).join(', '));
-      response.push(`Du kannst auch ${prefix}help <command> nutzen, um weitere Informationen zu erhalten. :)`);
+      response.push(`Du kannst auch ${prefix}help <command> nutzen, um weitere Informationen zu erhalten, z. B. \`!help report\` :)`);
     }
 
     return message.channel.send(response, { split: true });

@@ -2,7 +2,7 @@ module.exports = {
   name: 'report',
   aliases: ['melden'],
   description: 'Melde eine Person dem Goldman-Team',
-  example: '@Ragath hat mir per DM einen verdächtigen Link geschickt!',
+  example: '@Goldi hat mir per DM einen verdächtigen Link geschickt!',
   execute(message, args, client) {
     // Check if an argument was passed
     if (args.length) {
@@ -24,7 +24,7 @@ module.exports = {
       client.channels.cache.get('833458382635532329').send(reportMessage);
       message.reply('Danke für deine Meldung. Ich habe das Goldman-Team darüber informiert. :slight_smile:');
     } else {
-      message.reply('Bei einer Meldung musst du zumindest eine Person nennen. Falls du Hilfe brauchst, schreibe: !help report');
+      message.reply('Bei einer Meldung musst du zumindest eine Person nennen. Falls du Hilfe brauchst, schreibe: `!help report`');
     }
   },
 };

@@ -23,10 +23,6 @@ commandFiles.forEach((file) => {
   const command = require(`${commandsPath}/${file}`);
   client.commands.set(command.name, command);
 });
-// for (const file of commandFiles) {
-//   const command = require(`${commandsPath}/${file}`);
-//   client.commands.set(command.name, command);
-// }
 
 // Start the bot.
 // Discord dev: @see https://discord.com/developers/applications
@@ -55,16 +51,16 @@ client.on('ready', () => {
 
   // Friday reminder
   cron.schedule('0 18 * * 5', () => {
-    mainChannel.send('ich wünsche euch allen einen schönes Wochenende :partying_face:');
+    mainChannel.send('ich wünsche euch allen ein schönes Wochenende :partying_face:');
   }, cronOptions);
 
   // Sunday reminder
   cron.schedule('0 20 * * 7', () => {
     const info = [];
     info.push('ich hoffe, dass ihr alle eine tolle Woche hattet! :blush:');
-    info.push('Falls ihr wissen wollt, mit welchen Kommandos ihr mich benutzen könnt, schreibt einfach !commands in den Chat.');
+    info.push('Falls ihr wissen wollt, mit welchen Kommandos ihr mich benutzen könnt, schreibt einfach `!commands` oder `!help` in den Chat.');
     info.push('Wollt ihr wissen, an welchen Tagen und welches Spiel gestreamt wird? Dann klickt einfach hier: <#810479229607084062>');
-    info.push('Du bist eher der cringe Typ? Dann komm doch in den Channel <#833389402532216873>. Für weitere Information !cringer help');
+    info.push('Du bist eher der cringe Typ? Dann komm doch in den Channel <#833389402532216873>. Für weitere Information schreibe `!cringer help`');
     info.push('Die Regeln findet ihr hier: <#803677596898164786>. Falls jemand dagegen verstößt oder euch belästigt, könnt ihr mit !report denjenigen melden, z. B. `!report @Goldi hat mir unanständige Nachrichten geschickt`');
     mainChannel.send(info);
   }, cronOptions);
