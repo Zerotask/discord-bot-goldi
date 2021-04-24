@@ -1,4 +1,11 @@
 {
     "commandPrefix": "!",
-    "defaultActivity": "eine Runde Joggen. Habe aber mein Handy dabei :blush:"
+    "defaultActivity": "eine Runde Joggen. Habe aber mein Handy dabei :blush:",
+    "channels": {
+        "reports": "833458382635532329",
+        "streamWeekPlan": "810479229607084062"
+    },
+    "roles": {
+        "mod": "803005364366213171"
+    }
 }

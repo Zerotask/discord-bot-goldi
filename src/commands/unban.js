@@ -1,4 +1,5 @@
 const { isMod, getUserFromMention } = require('../functions');
+const config = require('../../config');
 
 module.exports = {
   name: 'unban',
@@ -27,7 +28,7 @@ module.exports = {
 
         try {
           unbannedUser.send(responseDM);
-          client.channels.cache.get('833458382635532329').send(responseChannelReports);
+          client.channels.cache.get(config.channels.reports).send(responseChannelReports);
           message.channel.send(`${unbannedUser} wurde erfolgreich vom Server entbannt und via DM darüber informiert.`);
 
           guild.members.unban(unbannedUser);

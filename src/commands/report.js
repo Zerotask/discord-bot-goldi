@@ -1,3 +1,5 @@
+const config = require('../../config');
+
 module.exports = {
   name: 'report',
   aliases: ['melden'],
@@ -21,7 +23,7 @@ module.exports = {
         reportMessage.push(`**${args.join(' ')}**`);
       }
 
-      client.channels.cache.get('833458382635532329').send(reportMessage);
+      client.channels.cache.get(config.channels.reports).send(reportMessage);
       message.reply('Danke für deine Meldung. Ich habe das Goldman-Team darüber informiert. :slight_smile:');
     } else {
       message.reply('Bei einer Meldung musst du zumindest eine Person nennen. Falls du Hilfe brauchst, schreibe: `!help report`');

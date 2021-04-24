@@ -1,4 +1,5 @@
 const { isMod, getUserFromMention } = require('../functions');
+const config = require('../../config');
 
 module.exports = {
   name: 'ban',
@@ -34,7 +35,7 @@ module.exports = {
           guild.members.ban(bannedUser);
 
           bannedUser.send(responseDM);
-          client.channels.cache.get('833458382635532329').send(responseChannelReports);
+          client.channels.cache.get(config.channels.reports).send(responseChannelReports);
           message.channel.send(`${bannedUser} wurde erfolgreich vom Server gebannt und via DM darüber informiert.`);
         } catch (error) {
           console.log(error);

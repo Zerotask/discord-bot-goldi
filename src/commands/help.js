@@ -5,7 +5,7 @@ module.exports = {
   name: 'help',
   description: 'Liste alle commands auf.',
   aliases: ['command', 'commands'],
-  usage: '[command name]',
+  example: 'cringer',
   execute(message, args, client) {
     const { commands } = client;
     let response = [];
