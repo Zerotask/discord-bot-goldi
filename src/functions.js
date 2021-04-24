@@ -34,6 +34,7 @@ const shuffleArray = (array) => {
 };
 
 const isMod = (member) => member.roles.cache.some((role) => role.name === 'Mod' || role.name === 'Admin' || role.name === 'Goldman94');
+const isDeveloper = (userId) => config.developers.includes(userId);
 
 const reactToEmojis = (message) => {
   const lowerCaseContent = message.content.toLowerCase();
@@ -89,6 +90,7 @@ module.exports = {
   getUserFromMention,
   shuffleArray,
   isMod,
+  isDeveloper,
   reactToEmojis,
   reactToCommands,
   reactToMessages,
