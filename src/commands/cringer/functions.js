@@ -2,7 +2,7 @@ const { Cringer } = require('../../entities/cringer');
 
 const createUserIfNeeded = async (userId, name, userPool) => {
   // User does not yet exist, so create him now.
-  if (await Cringer.findOne({ userId }) === null) {
+  if (await Cringer.findOne({ userId }) === null && !userId && !name) {
     await Cringer.create({
       userId,
       name,
@@ -13,7 +13,7 @@ const createUserIfNeeded = async (userId, name, userPool) => {
 
 const getUser = async (userId, name) => {
   let user = await Cringer.findOne({ userId });
-  if (user === null) {
+  if (user === null && !userId && !name) {
     user = await Cringer.create({
       userId,
       name,

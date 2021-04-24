@@ -53,12 +53,13 @@ const getNextUser = async (userId, userPool, userList) => {
       nextUserId = user.userPool.pop();
     } else {
       nextUserId = null;
+      break;
     }
   }
 
   // No user available
   if (!user.userPool.length && nextUserId === null) {
-    return refreshUserPool(userId, userPool);
+    return refreshUserPool(userId, userPool, userList);
   }
 
   // Update userPool
