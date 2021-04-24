@@ -11,10 +11,10 @@ const getUserFromMention = (client, mention) => {
   if (mention.startsWith('<@') && mention.endsWith('>')) {
     let userId = mention.slice(2, -1);
 
-    if (mention.startsWith('!')) {
+    if (userId.startsWith('!')) {
       userId = userId.slice(1);
     }
-
+    console.log(userId);
     return client.users.cache.get(userId);
   }
 
@@ -33,7 +33,7 @@ const shuffleArray = (array) => {
   return array;
 };
 
-const isMod = (member) => member.roles.cache.some((role) => role.name === 'Mod');
+const isMod = (member) => member.roles.cache.some((role) => role.name === 'Mod' || role.name === 'Admin' || role.name === 'Goldman94');
 
 const reactToEmojis = (message) => {
   const lowerCaseContent = message.content.toLowerCase();

@@ -71,6 +71,10 @@ const show = async (message, userId) => {
       { name: 'Job', value: user.job },
       { name: 'Beschreibung', value: user.description },
       { name: '\u200B', value: '\u200B' }, // blank line
+      { name: 'Gesendete Likes', value: user.likes.sent.length, inline: true }, // blank line
+      { name: 'Erhaltene Likes', value: user.likes.received.length, inline: true }, // blank line
+      { name: 'Matches', value: user.matches.length, inline: true }, // blank line
+      { name: '\u200B', value: '\u200B' }, // blank line
     );
 
   if (user.show) {
