@@ -6,7 +6,7 @@ module.exports = {
   description: 'Banne einen User',
   example: '@DrNidzo',
   execute(message, args, client) {
-    if (isMod(message.member) || message.author.username === 'Ragath') {
+    if (isMod(message.member)) {
       // You have to mention a user to ban
       if (args.length > 0 && message.mentions.users.size > 0) {
         const guild = client.guilds.cache.first();
