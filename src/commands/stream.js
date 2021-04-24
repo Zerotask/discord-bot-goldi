@@ -1,7 +1,7 @@
 module.exports = {
   name: 'stream',
   aliases: ['wochenplan', 'streamzeiten', 'streamer'],
-  description: 'Informiere über den Stream',
+  description: 'Informationen über den Stream',
   execute(message) {
     const output = [];
     output.push('Den Stream findest du hier: https://www.twitch.tv/goldman94');
