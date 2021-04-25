@@ -32,8 +32,8 @@ client.on('ready', () => {
   console.log(`Connected as ${client.user.tag}`);
   client.user.setActivity(config.defaultActivity);
 
-  const mainChannel = client.channels.cache.get('575701911433510912');
-  // const botTestingChannel = client.channels.cache.get('803680168991916112');
+  const mainChannel = client.channels.cache.get(config.channels.general);
+  // const botTestingChannel = client.channels.cache.get(config.channels.botTesting);
 
   const cronOptions = {
     timezone: 'Europe/Berlin',

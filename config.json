@@ -2,6 +2,8 @@
     "commandPrefix": "!",
     "defaultActivity": "eine Runde Joggen. Habe aber mein Handy dabei :blush:",
     "channels": {
+        "general": "575701911433510912",
+        "botTesting": "803680168991916112",
         "reports": "833458382635532329",
         "streamWeekPlan": "810479229607084062",
         "clips": "811752663359684618",
