@@ -3,7 +3,7 @@ const { getUserFromMention } = require('../functions');
 
 module.exports = {
   name: 'multitwitch',
-  aliases: ['multi-twitch', 'multi'],
+  aliases: ['multi-twitch', 'multi', 'multistream', 'multi-stream'],
   description: 'Erzeuge einen multitwitch.tv Link',
   example: 'DaliMann',
   execute(message, args, client) {
