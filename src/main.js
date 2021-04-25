@@ -39,30 +39,30 @@ client.on('ready', () => {
     timezone: 'Europe/Berlin',
   };
 
-  // Monday reminder
+  // Monday 10:00
   cron.schedule('0 10 * * 1', () => {
     mainChannel.send('Ich wünsche euch allen einen guten Start in die Woche :blush: Bleibt alle gesund!');
   }, cronOptions);
 
-  // Wednesday reminder
-  cron.schedule('0 14 * * 3', () => {
+  // Wednesday 12:00
+  cron.schedule('0 12 * * 3', () => {
     mainChannel.send('It is wednesday my dudes :frog: :frog: :frog:');
   });
 
-  // Friday reminder
+  // Friday 18:00
   cron.schedule('0 18 * * 5', () => {
     mainChannel.send('ich wünsche euch allen ein schönes Wochenende :partying_face:');
   }, cronOptions);
 
-  // Sunday reminder
-  cron.schedule('0 20 * * 7', () => {
+  // Sunday 19:00
+  cron.schedule('0 19 * * 7', () => {
     const info = [];
     info.push('ich hoffe, dass ihr alle eine tolle Woche hattet! :blush:');
     info.push('Falls ihr wissen wollt, mit welchen Befehlen ihr mich benutzen könnt, schreibt einfach `!commands` oder `!help` in den Chat.');
-    info.push('Wollt ihr wissen, an welchen Tagen und welches Spiel gestreamt wird? Dann klickt einfach hier: <#810479229607084062>');
-    info.push('Die Regeln findet ihr hier: <#803677596898164786>. Falls jemand dagegen verstößt oder euch belästigt, könnt ihr mit !report denjenigen melden, z. B. `!report @Goldi hat mir unanständige Nachrichten geschickt`');
-    info.push('Du bist eher der cringe Typ? Dann komm doch in den Channel <#833389402532216873>. Für weitere Information schreibe `!cringer help`');
-    info.push('Die Highlights der vergangen Streams kannst du dir im Channel <#811752663359684618> anschauen. Weitere Clips findest du über `!clips`');
+    info.push(`Wollt ihr wissen, an welchen Tagen und welches Spiel gestreamt wird? Dann klickt einfach hier: <#${config.channels.streamWeekPlan}>`);
+    info.push(`Die Regeln findet ihr hier: <#${config.channels.rules}>. Falls jemand dagegen verstößt oder euch belästigt, könnt ihr mit !report denjenigen melden, z. B. \`!report @Goldi hat mir unanständige Nachrichten geschickt\``);
+    info.push(`Du bist eher der cringe Typ? Dann komm doch in den Channel <#${config.channels.cringer}>. Für weitere Information schreibe \`!cringer help\``);
+    info.push(`Die Highlights der vergangen Streams kannst du dir im Channel <#${config.channels.clips}> anschauen. Weitere Clips findest du über \`!clips\``);
     mainChannel.send(info);
   }, cronOptions);
 });

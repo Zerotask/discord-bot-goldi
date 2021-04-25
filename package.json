@@ -1,17 +1,19 @@
 {
   "name": "discord-bot-goldi",
   "version": "1.1.2",
-  "description": "",
-  "main": "index.js",
+  "description": "Goldi is a Discord bot which uses the awesome discordjs library",
+  "license": "MIT",
+  "keywords": [
+    "bot",
+    "discord"
+  ],
+  "author": "Patrick Hintermayer",
   "scripts": {
     "start": "node ./src/main.js",
     "dev": "nodemon ./src/main.js",
     "deploy": "openode deploy",
     "lint": "eslint ./src"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
