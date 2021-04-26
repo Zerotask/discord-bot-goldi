@@ -44,11 +44,6 @@ client.on('ready', () => {
     mainChannel.send('Ich wünsche euch allen einen guten Start in die Woche :blush: Bleibt alle gesund!');
   }, cronOptions);
 
-  // Wednesday 12:00
-  cron.schedule('0 12 * * 3', () => {
-    mainChannel.send('It is wednesday my dudes :frog: :frog: :frog:');
-  });
-
   // Friday 18:00
   cron.schedule('0 18 * * 5', () => {
     mainChannel.send('ich wünsche euch allen ein schönes Wochenende :partying_face:');
