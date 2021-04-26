@@ -25,7 +25,7 @@ const getUser = async (userId, name) => {
 
 const reset = async (userId) => {
   const entry = await Cringer.findOneAndUpdate({ userId }, {
-    age: 69, job: 'Arbeitslos', gender: '', ownLikes: [], matches: [],
+    age: 69, job: 'Arbeitslos', gender: '', 'sent.likes': [], matches: [],
   });
   if (entry === null) {
     console.log('Error resetting profile');

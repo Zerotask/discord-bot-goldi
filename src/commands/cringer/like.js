@@ -8,7 +8,8 @@ const addLikeSent = async (userId, otherUserId) => {
     sentLikes.push(otherUserId);
   }
 
-  const entry = await Cringer.findOneAndUpdate({ userId }, { likes: { sent: sentLikes } });
+  const entry = await Cringer.findOneAndUpdate({ userId }, { 'likes.sent': sentLikes });
+  // const entry = await Cringer.findOneAndUpdate({ userId }, { $set: { 'likes.sent': sentLikes } });
   if (entry === null) {
     console.log('Error adding sent like');
   }
@@ -23,7 +24,7 @@ const addLikeReceived = async (userId, otherUserId, otherName) => {
 
   const entry = await Cringer.findOneAndUpdate(
     { userId: otherUserId },
-    { likes: { received: receivedLikes } },
+    { 'likes.received': receivedLikes },
   );
   if (entry === null) {
     console.log('Error adding received like to foreign user');
@@ -31,7 +32,7 @@ const addLikeReceived = async (userId, otherUserId, otherName) => {
 };
 
 const resetLikesSent = async (userId) => {
-  const entry = await Cringer.findOneAndUpdate({ userId }, { likes: { sent: [] } });
+  const entry = await Cringer.findOneAndUpdate({ userId }, { 'likes.sent': [] });
   if (entry === null) {
     console.log('Error resetting sent likes');
   }
