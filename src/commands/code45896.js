@@ -33,22 +33,22 @@ module.exports = {
                                             sent7.edit('Starte Goldi Recovery Modus. Bitte warten... :tools:').then((sent8) => {
                                               setTimeout(() => {
                                                 sent8.edit('Hallo :blush: wie kann ich dir helfen?');
-                                              }, 6000);
+                                              }, 6500);
                                             });
                                           }, 4500);
                                         });
                                       }, 5500);
                                     });
-                                  }, 6000);
+                                  }, 6500);
                                 });
                               }, 5500);
-                            }, 6000);
+                            }, 6500);
                           });
                         }, 5500);
                       });
-                    }, 4500);
+                    }, 5000);
                   });
-                }, 4000);
+                }, 4500);
               });
             }, 2500);
           }, 3000);
