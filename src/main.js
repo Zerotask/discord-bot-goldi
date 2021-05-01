@@ -46,14 +46,14 @@ client.on('ready', () => {
 
   // Friday 18:00
   cron.schedule('0 18 * * 5', () => {
-    mainChannel.send('ich wünsche euch allen ein schönes Wochenende :partying_face:');
+    mainChannel.send('Ich wünsche euch allen ein schönes Wochenende :partying_face:');
   }, cronOptions);
 
   // Sunday 19:00
   cron.schedule('0 19 * * 7', () => {
     const info = [];
-    info.push('ich hoffe, dass ihr alle eine tolle Woche hattet! :blush:');
-    info.push('Falls ihr wissen wollt, mit welchen Befehlen ihr mich benutzen könnt, schreibt einfach `!commands` oder `!help` in den Chat.');
+    info.push('Ich hoffe, dass ihr alle eine tolle Woche hattet! :blush:');
+    info.push('Mit den Befehlen `!commands` oder `!help` erfährt ihr, wie ihr mit mir interagieren könnt.');
     info.push(`Wollt ihr wissen, an welchen Tagen und welches Spiel gestreamt wird? Dann klickt einfach hier: <#${config.channels.streamWeekPlan}>`);
     info.push(`Die Regeln findet ihr hier: <#${config.channels.rules}>. Falls jemand dagegen verstößt oder euch belästigt, könnt ihr mit !report denjenigen melden, z. B. \`!report @Goldi hat mir unanständige Nachrichten geschickt\``);
     info.push(`Du bist eher der cringe Typ? Dann komm doch in den Channel <#${config.channels.cringer}>. Für weitere Information schreibe \`!cringer help\``);
