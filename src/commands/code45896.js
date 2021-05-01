@@ -1,18 +1,16 @@
-const config = require('../../config');
-
 module.exports = {
   name: 'code45896',
   description: 'Nichts für Unbefugte!',
   execute(message) {
     message.channel.send('`Starte Sequenz 45896`');
-    message.channel.send('Bestätige Sequenz mit dem geheimen Passwort::spy:');
+    message.channel.send('Bestätige Sequenz mit dem geheimen Passwort :spy: Du hast 30 Sekunden Zeit!');
 
     const filter = (m) => message.author.id === m.author.id;
-    message.channel.awaitMessages(filter, { time: 60000, max: 1, errors: ['time'] })
+    message.channel.awaitMessages(filter, { time: 30000, max: 1, errors: ['time'] })
       .then(async (messages) => {
         const code = messages.first().content.toLowerCase().trim();
         if (parseInt(code, 10) === 1234) {
-          message.channel.send('Der geheime Code ist korrekt. :unlock:');
+          message.channel.send('Das geheime Passwort ist korrekt. :unlock:');
 
           setTimeout(() => {
             message.channel.send('Beginne mit der Ausführung der `Sequenz 45896` :pager:');
@@ -55,14 +53,16 @@ module.exports = {
             }, 2500);
           }, 3000);
         } else {
-          message.channel.send('Code inkorrekt. Fehlerhafte Eingabe wurde geloggt. :rotating_light:');
-          message.channel.send('Starte Hackangriff. Bitte warten...');
+          message.channel.send('Passwort inkorrekt. Fehlerhafte Eingabe wurde geloggt. :rotating_light:');
           setTimeout(() => {
-            message.channel.send(`Hackangriff erfolgreich. Das Passwort **häschen2000** von ${message.author.username} wurde geändert.`);
+            message.channel.send('Starte Hackangriff. Bitte warten...');
             setTimeout(() => {
-              message.channel.send('Der Account wurde erfolgreich übernommen. Du wirst in 30 Sekunden automatisch ausgeloggt.');
-            }, 4000);
-          }, 4500);
+              message.channel.send(`Hackangriff erfolgreich. Das Passwort **häschen2000** von ${message.author.username} wurde geändert.`);
+              setTimeout(() => {
+                message.channel.send('Der Account wurde erfolgreich übernommen. Du wirst in 30 Sekunden automatisch ausgeloggt.');
+              }, 4000);
+            }, 4500);
+          }, 1500);
         }
       })
       .catch(() => {
