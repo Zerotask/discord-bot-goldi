@@ -76,12 +76,14 @@ const reactToCommands = (client, message) => {
 
 const reactToMessages = (message) => {
   const lowerCaseContent = message.content.toLowerCase();
-  if (lowerCaseContent.includes('moin goldi') || lowerCaseContent.includes('hi goldi') || lowerCaseContent.includes('hallo goldi') || lowerCaseContent.includes('hey goldi')) {
+  if (lowerCaseContent.includes('moin goldi') || lowerCaseContent.includes('hi goldi') || lowerCaseContent.includes('hallo goldi') || lowerCaseContent.includes('hey goldi') || lowerCaseContent.includes('servus goldi') || lowerCaseContent.includes('guten tag goldi') || lowerCaseContent.includes('guten abend goldi')) {
     message.reply('moin moin :blush:');
   } else if (lowerCaseContent.includes('dir auch goldi')) {
     message.reply('danke hihi :blush:');
   } else if (lowerCaseContent.includes('wie gehts goldi') || lowerCaseContent.includes('wie geht\'s goldi') || lowerCaseContent.includes('wie geht\'s dir goldi')) {
     message.reply('Mir geht es gut. Lieb, dass du fragst :blush: Wie geht es dir?');
+  } else if (lowerCaseContent.includes('danke goldi')) {
+    message.reply('Gerne :blush:');
   }
 };
 
