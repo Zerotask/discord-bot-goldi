@@ -9,7 +9,6 @@ const addLikeSent = async (userId, otherUserId) => {
   }
 
   const entry = await Cringer.findOneAndUpdate({ userId }, { 'likes.sent': sentLikes });
-  // const entry = await Cringer.findOneAndUpdate({ userId }, { $set: { 'likes.sent': sentLikes } });
   if (entry === null) {
     console.log('Error adding sent like');
   }

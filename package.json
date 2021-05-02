@@ -12,7 +12,8 @@
     "start": "node ./src/main.js",
     "dev": "nodemon ./src/main.js",
     "deploy": "openode deploy",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
   },
   "dependencies": {
     "discord.js": "^12.5.3",

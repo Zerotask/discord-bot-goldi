@@ -1,8 +1,18 @@
 const config = require('../config.json');
 
+/**
+ * @param {number} minimum
+ * @param {number} maximum
+ * @returns {number}
+ */
 const getRandomNumber = (minimum, maximum) => Math.floor(Math.random()
   * (maximum - minimum)) + minimum;
 
+/**
+ * @param {object} client
+ * @param {string} mention
+ * @returns {object|null}
+ */
 const getUserFromMention = (client, mention) => {
   if (!mention) {
     return null;
@@ -22,18 +32,28 @@ const getUserFromMention = (client, mention) => {
 };
 
 /**
- * Shuffles array in place. ES6 version
- * @param {Array} a items An array containing the items.
+ * @param {Array}
+ * @return {Array}
  */
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
+    // eslint-disable-next-line no-param-reassign
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
 };
 
+/**
+ * @param {object} member
+ * @returns {boolean}
+ */
 const isMod = (member) => member.roles.cache.some((role) => role.name === 'Mod' || role.name === 'Admin' || role.name === 'Goldman94');
+
+/**
+ * @param {string} userId
+ * @returns {boolean}
+ */
 const isDeveloper = (userId) => config.developers.includes(userId);
 
 const reactToEmojis = (message) => {
@@ -51,6 +71,11 @@ const reactToEmojis = (message) => {
   }
 };
 
+/**
+ * @param {object} client
+ * @param {object} message
+ * @returns {void}
+ */
 const reactToCommands = (client, message) => {
   // Besides reacting to emojis, ignore all non-commands.
   if (!message.content.startsWith(config.commandPrefix)) {
@@ -74,6 +99,10 @@ const reactToCommands = (client, message) => {
   }
 };
 
+/**
+ * @param {object} message
+ * @returns {void}
+ */
 const reactToMessages = (message) => {
   const lowerCaseContent = message.content.toLowerCase();
   if (lowerCaseContent.includes('moin goldi') || lowerCaseContent.includes('hi goldi') || lowerCaseContent.includes('hallo goldi') || lowerCaseContent.includes('hey goldi') || lowerCaseContent.includes('servus goldi') || lowerCaseContent.includes('guten tag goldi') || lowerCaseContent.includes('guten abend goldi')) {
