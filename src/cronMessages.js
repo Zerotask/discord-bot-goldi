@@ -31,6 +31,15 @@ const run = (client) => {
     info.push(`Die Highlights der vergangenen Streams kannst du dir im Channel <#${config.channels.clips}> anschauen. Weitere Clips findest du mit dem Befehl \`!clips\``);
     mainChannel.send(info);
   }, cronOptions);
+
+  // Temporary event messages
+  // every day at 16:00
+  cron.schedule('0 16 * * *', () => {
+    const info = [];
+    info.push('Am Dienstag, den **11.05 ab 18 Uhr** findet das große GTA RP **LuckyV Einreise-Event** statt :partying_face:');
+    info.push('Dort wird Mr. Goldman legal am Flughafen einreisen und ihr könnt live auf Twitch dabei sein!');
+    mainChannel.send(info);
+  }, cronOptions);
 };
 
 module.exports = { run };
