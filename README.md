@@ -13,8 +13,8 @@ Big thanks to [opeNode.io](https://www.openode.io/) where this bot is hosted for
 - multitwitch
 - report
 - debug
-- be-like-bikk
-- history 
+- be-like-bill
+- history
 
 ## Feature plans
 - TypeScript refactoring (depends on https://github.com/discordjs/discord.js-next)

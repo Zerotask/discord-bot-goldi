@@ -29,6 +29,8 @@ module.exports = {
       'Eigentlich kaum zu ertragen, wie viel Armut es auf der Welt gibt. Gerade habe ich jemanden gesehen, der mit einem Opel Corsa zur Uni fahren musste - **AUS DEM WEG, GERINGVERDIENER!**',
       'Den armen Menschen, die am Straßenrand mit Gepäck und Daumen hoch stehen, und mir und meinem Porsche ein Like geben, gebe ich immer eines zurück :+1: - **AUS DEM WEG, GERINGVERDIENER!**',
       'Kennst du den Moment, wenn du lange auf etwas hin gespart hast und es dann endlich in den Händen hältst? Ich, Gott sei Dank, nicht - **AUS DEM WEG, GERINGVERDIENER!**',
+      'Wenn das BAföG überwiesen wird und man sich erstmal die Empfehlung in der Mensa gönnt - **AUS DEM WEG, GERINGVERDIENER!**',
+      'Wenn du im Supermarkt eine OP-Maske trägst und der vor dir nur eine FFP2-Maske auf hat - **AUS DEM WEG, GERINGVERDIENER!**',
     ];
     message.channel.send(list[getRandomNumber(0, list.length - 1)]);
   },
