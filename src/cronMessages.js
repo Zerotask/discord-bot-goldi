@@ -33,10 +33,9 @@ const run = (client) => {
   }, cronOptions);
 
   // Temporary event messages
-  // every day at 16:00
-  cron.schedule('0 16 * * *', () => {
+  cron.schedule('0 16 * * 1', () => {
     const info = [];
-    info.push('Am Dienstag, den **11.05 ab 18 Uhr** findet das große GTA RP **LuckyV Einreise-Event** statt :partying_face:');
+    info.push('Am Dienstag, den **11.05 ab 18 Uhr** findet das große GTA 5 RP **LuckyV Einreise-Event** statt :partying_face:');
     info.push('Dort wird Mr. Goldman legal am Flughafen einreisen und ihr könnt live auf Twitch dabei sein!');
     mainChannel.send(info);
   }, cronOptions);
