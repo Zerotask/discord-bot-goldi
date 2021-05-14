@@ -14,7 +14,7 @@ const refreshUserPool = async (userId, userPool, userList) => {
   // next user has set show=false
   while (user.likes.sent.includes(nextUserId)
   // eslint-disable-next-line no-await-in-loop
-  || !(await getUser(nextUserId, userList.get(nextUserId)?.username)).show) {
+  || !(await getUser(nextUserId, userList.get(nextUserId)?.username))?.show) {
     if (userPool.length) {
       nextUserId = userPool.pop();
     } else {
@@ -50,7 +50,7 @@ const getNextUser = async (userId, userPool, userList) => {
   // next user has set show=false
   while (user.likes.sent.includes(nextUserId)
   // eslint-disable-next-line no-await-in-loop
-  || !(await getUser(nextUserId, userList.get(nextUserId)?.username)).show) {
+  || !(await getUser(nextUserId, userList.get(nextUserId)?.username))?.show) {
     if (user.userPool.length) {
       nextUserId = user.userPool.pop();
     } else {
