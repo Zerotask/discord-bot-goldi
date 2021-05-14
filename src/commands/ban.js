@@ -1,5 +1,5 @@
 const { isMod, getUserFromMention } = require('../functions');
-const config = require('../../config');
+const config = require('../../config.json');
 
 module.exports = {
   name: 'ban',
