@@ -23,7 +23,7 @@ const run = (client) => {
   // 19:00 on 1st and 15th of a month
   cron.schedule('0 19 1,15 * *', () => {
     const info = [];
-    info.push('Ich hoffe, dass ihr alle eine tolle Woche hattet! :blush:');
+    info.push('Ich hoffe, dass ihr alle eine tollen Tag hattet! :blush:');
     info.push('Mit den Befehlen `!commands` oder `!help` erfährst du, wie du mit mir interagieren kannst.');
     info.push(`Möchtest du wissen, an welchen Tagen und welches Spiel gestreamt wird? Dann klick einfach hier: <#${config.channels.streamWeekPlan}>`);
     info.push(`Die Regeln findest du hier: <#${config.channels.rules}>. Falls jemand dagegen verstößt oder dich belästigt, kannst du mit \`!report\` denjenigen melden, z. B. \`!report @Goldi hat mir unanständige Nachrichten geschickt\``);
