@@ -16,12 +16,15 @@
     "lint:fix": "eslint ./src --fix"
   },
   "dependencies": {
+    "date-and-time": "^1.0.0",
     "discord.js": "^12.5.3",
     "dotenv": "^9.0.0",
     "minimist": ">=0.2.1",
     "mongoose": "^5.12.7",
     "node-cron": "^3.0.0",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "twitch": "^4.5.5",
+    "twitch-auth": "^4.5.5"
   },
   "devDependencies": {
     "eslint": "^7.24.0",

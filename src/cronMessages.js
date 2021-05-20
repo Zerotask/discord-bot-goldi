@@ -1,5 +1,24 @@
 const cron = require('node-cron');
+const date = require('date-and-time');
 const config = require('../config.json');
+const { getTopClipsOfTheWeek } = require('./twitch');
+
+const postTopClipsOfTheWeek = async (client) => {
+  const clipsChannel = client.channels.cache.get(config.channels.clips);
+  clipsChannel.send('Ich präsentiere euch die Clips der Woche :blush:');
+  let place = 1;
+  const crownEmoji = '<:Krone_2:829297770354442251>';
+  (await getTopClipsOfTheWeek()).forEach((clip) => {
+    const response = [];
+    const repeatCrowns = Math.ceil(3 / place);
+    response.push(`** ${crownEmoji.repeat(repeatCrowns)} Platz ${place}: ${clip.title} ${crownEmoji.repeat(repeatCrowns)}**`);
+    response.push(`*Erstellt von: ${clip.creatorDisplayName} | Datum: ${date.format(clip.creationDate, 'DD.MM.YYYY HH:MM')} Uhr | Views: ${clip.views}*`);
+    response.push(clip.url);
+    clipsChannel.send(response);
+
+    place += 1;
+  });
+};
 
 const run = (client) => {
   const mainChannel = client.channels.cache.get(config.channels.general);
@@ -30,6 +49,11 @@ const run = (client) => {
     info.push(`Du bist eher der cringe Typ? Dann komm doch in den Channel <#${config.channels.cringer}>. Für weitere Information schreibe \`!cringer help\``);
     info.push(`Die Highlights der vergangenen Streams kannst du dir im Channel <#${config.channels.clips}> anschauen. Weitere Clips findest du mit dem Befehl \`!clips\``);
     mainChannel.send(info);
+  }, cronOptions);
+
+  // Sunday 22:00
+  cron.schedule('0 22 * * 7', () => {
+    postTopClipsOfTheWeek(client);
   }, cronOptions);
 };
 

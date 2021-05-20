@@ -116,6 +116,13 @@ const reactToMessages = (message) => {
   }
 };
 
+const getDateDaysBack = (days) => {
+  const date = new Date();
+  date.setDate(date.getDate() - days);
+
+  return date;
+};
+
 module.exports = {
   getRandomNumber,
   getUserFromMention,
@@ -125,4 +132,5 @@ module.exports = {
   reactToEmojis,
   reactToCommands,
   reactToMessages,
+  getDateDaysBack,
 };
