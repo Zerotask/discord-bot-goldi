@@ -1,4 +1,5 @@
 const { getStreamer, getFollowersCount } = require('../twitch');
+const { numberFormat, dateTimeFormatLong } = require('../functions');
 
 module.exports = {
   name: 'stats',
@@ -16,11 +17,11 @@ module.exports = {
       response.push(`Name: ${streamer.name}`);
       response.push(`Anzeigename: ${streamer.displayName}`);
       response.push(`Beschreibung: ${streamer.description}`);
-      response.push(`Account erstellt am: ${streamer.creationDate}`);
+      response.push(`Account erstellt am: ${dateTimeFormatLong(streamer.creationDate)}`);
       response.push(`Broadcaster-Typ: ${streamer.broadcasterType}`);
       response.push(`ID: ${streamer.id}`);
-      response.push(`Follower: ${await getFollowersCount()}`);
-      response.push(`Views: ${streamer.views}`);
+      response.push(`Follower: ${numberFormat(await getFollowersCount())}`);
+      response.push(`Views: ${numberFormat(streamer.views)}`);
       response.push(`Folgt: ${(await streamer.getFollows()).total} Personen`);
       if (stream === null) {
         response.push('Live: Nein');

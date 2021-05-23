@@ -121,12 +121,28 @@ const reactToMessages = (message) => {
   }
 };
 
+/**
+ * @param {number} days
+ * @returns {number}
+ */
 const getDateDaysBack = (days) => {
   const date = new Date();
   date.setDate(date.getDate() - days);
 
   return date;
 };
+
+/**
+ * @param {number} value
+ * @returns {string}
+ */
+const numberFormat = (value) => new Intl.NumberFormat(config.locale).format(value);
+
+/**
+ * @param {Date} value
+ * @returns {string}
+ */
+const dateTimeFormatLong = (value) => new Intl.DateTimeFormat(config.locale, { dateStyle: 'full', timeStyle: 'long' }).format(value);
 
 module.exports = {
   getRandomNumber,
@@ -138,4 +154,6 @@ module.exports = {
   reactToCommands,
   reactToMessages,
   getDateDaysBack,
+  numberFormat,
+  dateTimeFormatLong,
 };
