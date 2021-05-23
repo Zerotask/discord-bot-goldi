@@ -1,6 +1,6 @@
 {
   "name": "discord-bot-goldi",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Goldi is a Discord bot which uses the awesome discordjs library",
   "license": "MIT",
   "keywords": [
@@ -23,6 +23,7 @@
     "mongoose": "^5.12.7",
     "node-cron": "^3.0.0",
     "node-fetch": "^2.6.1",
+    "node-html-parser": "^3.3.3",
     "twitch": "^4.5.5",
     "twitch-auth": "^4.5.5"
   },
