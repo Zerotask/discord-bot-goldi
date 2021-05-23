@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['belikebill', 'be-like', 'be-like-bill'],
   description: 'Be like Bill.',
   example: 'kathrin f',
-  execute(message, args, client) {
+  execute({ message, args, client }) {
     let name = message.author.username || 'Unbekannt';
     if (args[0]) {
       name = getUserFromMention(client, args[0])?.username;

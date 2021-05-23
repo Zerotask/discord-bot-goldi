@@ -21,7 +21,7 @@ module.exports = {
   aliases: ['historyevents', 'history', 'geschichte', 'geschichtsereignisse'],
   description: 'Zeige Geschichtsereignisse vom heutigen Tag',
   example: '3',
-  execute(message, args) {
+  execute({ message, args }) {
     const date = new Date();
     const month = date.getMonth() + 1;
     const dayOfMonth = date.getDate();

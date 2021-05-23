@@ -4,7 +4,7 @@ module.exports = {
   name: 'geringverdiener',
   aliases: ['justus', 'abgehoben'],
   description: 'Aus dem Weg, Geringverdiener',
-  execute(message) {
+  execute({ message }) {
     const list = [
       'Ich, wenn ich meinen Einkaufswagen mit einer 2€ Münze löse, zu allen, die einen Einkaufschip benutzen - **AUS DEM WEG, GERINGVERDIENER!**',
       'Wenn Leute bei Schnee zuerst an Schlitten fahren denken - **AUS DEM WEG, GERINGVERDIENER!**',
@@ -31,6 +31,7 @@ module.exports = {
       'Kennst du den Moment, wenn du lange auf etwas hin gespart hast und es dann endlich in den Händen hältst? Ich, Gott sei Dank, nicht - **AUS DEM WEG, GERINGVERDIENER!**',
       'Wenn das BAföG überwiesen wird und man sich erstmal die Empfehlung in der Mensa gönnt - **AUS DEM WEG, GERINGVERDIENER!**',
       'Wenn du im Supermarkt eine OP-Maske trägst und der vor dir nur eine FFP2-Maske auf hat - **AUS DEM WEG, GERINGVERDIENER!**',
+      'Was ich von Unternehmen ohne Betriebsrat halte? Anteile. - **AUS DEM WEG, GERINGVERDIENER!**',
     ];
     message.channel.send(list[getRandomNumber(0, list.length - 1)]);
   },

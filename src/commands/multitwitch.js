@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['multi-twitch', 'multi', 'multistream', 'multi-stream'],
   description: 'Erzeuge einen multitwitch.tv Link',
   example: 'DaliMann',
-  execute(message, args, client) {
+  execute({ message, args, client }) {
     if (!args.length) {
       message.reply('Du musst mindestens einen Streamer angeben.');
       return;

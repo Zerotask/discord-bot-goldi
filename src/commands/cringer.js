@@ -14,7 +14,7 @@ module.exports = {
   aliases: ['cringe', 'match'],
   description: 'Hast du ein Cringer match?',
   example: 'help',
-  async execute(message, args, client) {
+  async execute({ message, args, client }) {
     // Get all users
     const userList = client.users.cache;
 

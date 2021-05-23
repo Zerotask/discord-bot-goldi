@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['melden'],
   description: 'Melde eine Person dem Goldman-Team',
   example: '@Goldi hat mir per DM einen verdächtigen Link geschickt!',
-  execute(message, args, client) {
+  execute({ message, args, client }) {
     // Check if an argument was passed
     if (args.length) {
       const reportMessage = [];
@@ -14,6 +14,7 @@ module.exports = {
       if (message.channel.type === 'dm') {
         reportMessage.push('Diese Nachricht wurde via DM gemeldet.');
       } else {
+        // TODO: add short message history (e. g. last 3 messages of that user)
         reportMessage.push(`Diese Nachricht wurde im channel <#${message.channel.id}> gemeldet.`);
       }
 

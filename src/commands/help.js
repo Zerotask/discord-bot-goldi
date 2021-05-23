@@ -6,7 +6,7 @@ module.exports = {
   description: 'Liste alle commands auf.',
   aliases: ['command', 'commands'],
   example: 'cringer',
-  execute(message, args, client) {
+  execute({ message, args, client }) {
     const { commands } = client;
     let response = [];
     const prefix = config.commandPrefix;

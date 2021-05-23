@@ -4,7 +4,7 @@ module.exports = {
   name: 'dad',
   aliases: ['vater', 'dadjoke', 'vater-witz', 'vaterwitz', 'dad-joke'],
   description: 'Zeige einen random dad joke',
-  execute(message) {
+  execute({ message }) {
     fetch('https://icanhazdadjoke.com/', {
       headers: { Accept: 'application/json' },
     })

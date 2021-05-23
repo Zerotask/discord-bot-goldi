@@ -4,7 +4,7 @@ module.exports = {
   name: 'sequence45896',
   aliases: ['sequenz45896', 'protokoll45896', 'code45896'],
   description: 'Nichts für Unbefugte!',
-  execute(message) {
+  execute({ message }) {
     message.channel.send('`Starte Sequenz 45896`');
     message.channel.send('Bestätige Sequenz mit dem geheimen Passwort :spy: Du hast 30 Sekunden Zeit!');
 

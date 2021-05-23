@@ -91,7 +91,7 @@ const reactToCommands = (client, message) => {
 
     // Check if it's a registered command.
     if (cmd) {
-      cmd.execute(message, args, client);
+      cmd.execute({ message, args, client });
     }
   } catch (error) {
     console.error(error);
@@ -104,6 +104,11 @@ const reactToCommands = (client, message) => {
  * @returns {void}
  */
 const reactToMessages = (message) => {
+  // If it's a command, ignore it.
+  if (message.content.startsWith(config.commandPrefix)) {
+    return;
+  }
+
   const lowerCaseContent = message.content.toLowerCase();
   if (lowerCaseContent.includes('moin goldi') || lowerCaseContent.includes('hi goldi') || lowerCaseContent.includes('hallo goldi') || lowerCaseContent.includes('hey goldi') || lowerCaseContent.includes('servus goldi') || lowerCaseContent.includes('guten tag goldi') || lowerCaseContent.includes('guten abend goldi')) {
     message.reply('moin moin :blush:');
