@@ -5,7 +5,6 @@ module.exports = {
   name: 'luckyv',
   aliases: ['lucky', 'luckyv-streamer', 'lucky-streamer'],
   description: 'Informationen über den GTA V Roleplay-Server LuckyV',
-
   async execute({ message }) {
     const urls = {
       altV: 'https://api.altv.mp/servers/list',
