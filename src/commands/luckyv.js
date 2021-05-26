@@ -3,7 +3,7 @@ const { numberFormat } = require('../functions');
 
 module.exports = {
   name: 'luckyv',
-  aliases: ['lucky', 'luckyv-streamer', 'lucky-streamer'],
+  aliases: ['lucky', 'luckyv-streamer', 'lucky-streamer', 'gta'],
   description: 'Informationen über den GTA V Roleplay-Server LuckyV',
   async execute({ message }) {
     const results = await Promise.all([
@@ -20,6 +20,8 @@ module.exports = {
     output.push(`Streams online: **${numberFormat(luckyVStreamersData.online)}** (${numberFormat(luckyVStreamersData.viewer)} Zuschauer)`);
     output.push(`Streams offline: ${numberFormat(luckyVStreamersData.offline)}`);
     output.push(`alt:V-Version: ${altvServer.version}`);
+    output.push('Einreise: 11.05.2021 (legal)');
+    output.push('Charakter: Anthony Goldman, 30, Zivilist');
     output.push('Alle Streams im Überblick: https://luckyv-streamer.frozenpenguin.media');
     message.channel.send(output);
   },
