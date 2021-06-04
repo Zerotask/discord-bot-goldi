@@ -39,8 +39,8 @@ const run = (client) => {
     mainChannel.send('Ich wünsche euch allen ein schönes Wochenende :partying_face:');
   }, cronOptions);
 
-  // 19:00 on 1st and 15th of a month
-  cron.schedule('0 19 1,15 * *', () => {
+  // 20:00 on 1st of a month
+  cron.schedule('0 20 1 * *', () => {
     const info = [];
     info.push('Ich hoffe, dass ihr alle eine tollen Tag hattet! :blush:');
     info.push('Mit den Befehlen `!commands` oder `!help` erfährst du, wie du mit mir interagieren kannst.');
