@@ -6,10 +6,18 @@ module.exports = {
   aliases: ['lucky', 'luckyv-streamer', 'lucky-streamer', 'gta'],
   description: 'Informationen über den GTA V Roleplay-Server LuckyV',
   async execute({ message }) {
-    const results = await Promise.all([
-      fetch('https://api.altv.mp/servers/list'),
-      fetch('https://luckyv-streamer.frozenpenguin.media/api.php'),
-    ]);
+    let results;
+    try {
+      results = await Promise.all([
+        fetch('https://api.altv.mp/servers/list'),
+        fetch('https://luckyv-streamer.frozenpenguin.media/api.php'),
+      ]);
+    } catch (error) {
+      console.log({ error });
+      message.channel.send('Die Daten können derzeit nicht abgerufen werden. :( Versuche es später noch einmal.');
+      return;
+    }
+
     const altvData = await results[0].json();
     const luckyVStreamersData = await results[1].json();
 
