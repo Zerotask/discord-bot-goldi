@@ -19,7 +19,7 @@
     "date-and-time": "^1.0.0",
     "discord.js": "^12.5.3",
     "dotenv": "^10.0.0",
-    "mongoose": "^5.12.7",
+    "mongoose": "^5.12.14",
     "node-cron": "^3.0.0",
     "node-fetch": "^2.6.1",
     "twitch": "^4.5.5",
