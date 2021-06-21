@@ -36,7 +36,7 @@ const run = (client) => {
 
   // Friday 18:00
   cron.schedule('0 18 * * 5', () => {
-    mainChannel.send('Ich wünsche euch allen ein schönes Wochenende :partying_face:');
+    mainChannel.send('Ich sag\'s euch, wie es ist. Heute ist tatsächlich Freitag. Ich wünsche euch allen ein schönes Wochenende :partying_face:');
   }, cronOptions);
 
   // 20:00 on 1st of a month
