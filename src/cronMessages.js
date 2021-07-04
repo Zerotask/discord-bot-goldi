@@ -4,20 +4,23 @@ const config = require('../config.json');
 const { getTopClipsOfTheWeek } = require('./twitch');
 
 const postTopClipsOfTheWeek = async (client) => {
-  const clipsChannel = client.channels.cache.get(config.channels.clips);
-  clipsChannel.send('Ich präsentiere euch die Clips der Woche :blush:');
-  let place = 1;
-  const crownEmoji = '<:Krone_2:829297770354442251>';
-  (await getTopClipsOfTheWeek()).forEach((clip) => {
-    const response = [];
-    const repeatCrowns = Math.ceil(3 / place);
-    response.push(`** ${crownEmoji.repeat(repeatCrowns)} Platz ${place}: ${clip.title} ${crownEmoji.repeat(repeatCrowns)}**`);
-    response.push(`*Erstellt von: ${clip.creatorDisplayName} | Datum: ${date.format(clip.creationDate, 'DD.MM.YYYY HH:MM')} Uhr | Views: ${clip.views}*`);
-    response.push(clip.url);
-    clipsChannel.send(response);
+  const clipsOfTheWeek = await getTopClipsOfTheWeek();
+  if (clipsOfTheWeek.length > 0) {
+    const clipsChannel = client.channels.cache.get(config.channels.clips);
+    clipsChannel.send('Ich präsentiere euch die Clips der Woche :blush:');
+    let place = 1;
+    const crownEmoji = '<:Krone_2:829297770354442251>';
+    clipsOfTheWeek.forEach((clip) => {
+      const response = [];
+      const repeatCrowns = Math.ceil(3 / place);
+      response.push(`** ${crownEmoji.repeat(repeatCrowns)} Platz ${place}: ${clip.title} ${crownEmoji.repeat(repeatCrowns)}**`);
+      response.push(`*Erstellt von: ${clip.creatorDisplayName} | Datum: ${date.format(clip.creationDate, 'DD.MM.YYYY HH:MM')} Uhr | Views: ${clip.views}*`);
+      response.push(clip.url);
+      clipsChannel.send(response);
 
-    place += 1;
-  });
+      place += 1;
+    });
+  }
 };
 
 const run = (client) => {
