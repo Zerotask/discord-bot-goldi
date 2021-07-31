@@ -1,6 +1,6 @@
 {
     "commandPrefix": "!",
-    "defaultActivity": "World of Warcraft",
+    "defaultActivity": "with other bots",
     "channels": {
         "general": "575701911433510912",
         "botTesting": "803680168991916112",
