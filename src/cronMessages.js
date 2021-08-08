@@ -32,14 +32,15 @@ const run = (client) => {
     timezone: 'Europe/Berlin',
   };
 
+  const tempGtaMessage = 'Übrigens ist am **18.08** der große GTA 5 RP Neustart auf **HomeState**! Seid live bei der Einreise dabei!';
   // Monday 10:00
   cron.schedule('0 10 * * 1', () => {
-    mainChannel.send('Ich wünsche euch allen einen guten Start in die Woche :blush: Bleibt alle gesund!');
+    mainChannel.send(`Ich wünsche euch allen einen guten Start in die Woche :blush: Bleibt alle gesund! ${tempGtaMessage}`);
   }, cronOptions);
 
   // Friday 18:00
   cron.schedule('0 18 * * 5', () => {
-    mainChannel.send('Ich sag\'s euch, wie es ist. Heute ist tatsächlich Freitag. Ich wünsche euch allen ein schönes Wochenende :partying_face:');
+    mainChannel.send(`Ich sag's euch, wie es ist. Heute ist tatsächlich Freitag. Ich wünsche euch allen ein schönes Wochenende :partying_face: ${tempGtaMessage}`);
   }, cronOptions);
 
   // 20:00 on 1st of a month

@@ -1,6 +1,6 @@
 {
     "commandPrefix": "!",
-    "defaultActivity": "with other bots",
+    "defaultActivity": "| Homestate 18.08 großer Neustart |",
     "channels": {
         "general": "575701911433510912",
         "botTesting": "803680168991916112",
