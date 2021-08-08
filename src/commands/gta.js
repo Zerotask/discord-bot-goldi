@@ -24,6 +24,7 @@ module.exports = {
     const output = [];
     output.push('**HomeState - GTA V Roleplay - https://www.homestate.eu/forum/**');
     output.push(`Spieler online: **${numberFormat(altvServer.players)}**`);
+    output.push('Stream-Übersicht: https://www.homestate.eu/index.php?ha-streaming-partner/&pageNo=1&sortField=twitchPartnerLastStream&sortOrder=DESC');
     // output.push(`Streams online: **${numberFormat(luckyVStreamersData.online)}**
     // (${numberFormat(luckyVStreamersData.viewer)} Zuschauer)`);
     // output.push(`Streams offline: ${numberFormat(luckyVStreamersData.offline)}`);
