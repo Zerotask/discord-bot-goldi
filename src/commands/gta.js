@@ -4,7 +4,7 @@ const { numberFormat } = require('../functions');
 
 module.exports = {
   name: 'gta',
-  aliases: ['hs', 'homestate', 'hs-test'],
+  aliases: ['hs', 'homestate'],
   description: 'Informationen über den GTA V Roleplay-Server HomeState',
   async execute({ message }) {
     let results;
