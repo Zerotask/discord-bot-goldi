@@ -35,7 +35,7 @@ module.exports = {
     output.push(`Streams online: ${streamCounter ?? 0} (https://tinyurl.com/homestate-streams)`);
     output.push(`Server-Status: ${serverStatus ?? 'unbekannt'} (https://homestate.statuspage.io)`);
     output.push(`alt:V-Version: ${altvServer.version}`);
-    output.push('Einreise: 18.08.2021 (illegal über das Gefängnis)');
+    output.push('Einreise: (noch unbekannt) (illegal über das Gefängnis)');
     output.push('Charakter: (Name noch unbekannt), (Alter noch unbekannt), Crime');
     message.channel.send(output);
   },
