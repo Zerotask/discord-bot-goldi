@@ -1,8 +1,8 @@
 const { getUser } = require('./functions');
 const { Cringer } = require('../../entities/cringer');
 
-const addLikeSent = async (userId, otherUserId) => {
-  const user = await getUser(userId);
+const addLikeSent = async (userId, userName, otherUserId) => {
+  const user = await getUser(userId, userName);
   const sentLikes = user.likes.sent;
   if (!sentLikes.includes(otherUserId)) {
     sentLikes.push(otherUserId);
@@ -37,18 +37,18 @@ const resetLikesSent = async (userId) => {
   }
 };
 
-const getLikesSent = async (userId) => {
-  const user = await getUser(userId);
+const getLikesSent = async (userId, userName) => {
+  const user = await getUser(userId, userName);
   return user.likes.sent;
 };
 
-const getLikesReceived = async (userId) => {
-  const user = await getUser(userId);
+const getLikesReceived = async (userId, userName) => {
+  const user = await getUser(userId, userName);
   return user.likes.received;
 };
 
-const showLikesSent = async (message, userId, userList) => {
-  const sentLikes = await getLikesSent(userId);
+const showLikesSent = async (message, userId, userName, userList) => {
+  const sentLikes = await getLikesSent(userId, userName);
   if (sentLikes.length) {
     const response = [];
     response.push(`Das sind deine gesendeten Likes (${sentLikes.length}):`);
@@ -59,8 +59,8 @@ const showLikesSent = async (message, userId, userList) => {
   }
 };
 
-const showLikesReceived = async (message, userId, userList) => {
-  const receivedLikes = await getLikesReceived(userId);
+const showLikesReceived = async (message, userId, userName, userList) => {
+  const receivedLikes = await getLikesReceived(userId, userName);
   if (receivedLikes.length) {
     const response = [];
     response.push(`Das sind deine erhaltenen Likes (${receivedLikes.length}):`);

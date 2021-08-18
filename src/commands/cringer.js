@@ -26,7 +26,8 @@ module.exports = {
     const userPool = shuffleArray(Array.from(userList.keys()));
 
     const userId = message.author.id;
-    await functions.createUserIfNeeded(userId, message.author.username, userPool);
+    const userName = message.author.username;
+    await functions.createUserIfNeeded(userId, userName, userPool);
 
     let response = [];
 
@@ -89,7 +90,7 @@ module.exports = {
         case 'user':
         case 'leute':
         case 'verfügbar':
-          message.reply(`Es gibt insgesamt ${message.channel.guild.memberCount} Leute. Du hast noch ${(await functions.getUser(userId)).userPool.length} zum Liken. Danach fängt es wieder von vorne an.`);
+          message.reply(`Es gibt insgesamt ${message.channel.guild.memberCount} Leute. Du hast noch ${(await functions.getUser(userId, userName)).userPool.length} zum Liken. Danach fängt es wieder von vorne an.`);
           break;
         case 'version':
           message.reply(`Die Cringer-Version ist: ${version}`);
@@ -102,7 +103,7 @@ module.exports = {
         case 'likes':
         case 'received-likes':
         case 'likes-received':
-          like.showLikesReceived(message, userId, userList);
+          like.showLikesReceived(message, userId, userName, userList);
           break;
         case 'liked':
         case 'sent-likes':
@@ -111,7 +112,7 @@ module.exports = {
             like.resetLikesSent(userId);
             message.reply('deine gesendeten Likes wurden zurückgesetzt.');
           } else {
-            like.showLikesSent(message, userId, userList);
+            like.showLikesSent(message, userId, userName, userList);
           }
           break;
         case 'matches':
@@ -153,7 +154,7 @@ module.exports = {
           help.show(message, this.name);
       }
     } else {
-      game.play(message, userId, userPool, userList);
+      game.play(message, userId, userName, userPool, userList);
     }
   },
 };

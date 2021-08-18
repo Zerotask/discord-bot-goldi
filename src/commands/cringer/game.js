@@ -4,8 +4,8 @@ const like = require('./like');
 const match = require('./match');
 const { Cringer } = require('../../entities/cringer');
 
-const refreshUserPool = async (userId, userPool, userList) => {
-  const user = await getUser(userId);
+const refreshUserPool = async (userId, userName, userPool, userList) => {
+  const user = await getUser(userId, userName);
 
   // Reload user list
   let nextUserId = userPool.pop();
@@ -34,13 +34,13 @@ const refreshUserPool = async (userId, userPool, userList) => {
   return nextUserId;
 };
 
-const getNextUser = async (userId, userPool, userList) => {
-  const user = await getUser(userId);
+const getNextUser = async (userId, userName, userPool, userList) => {
+  const user = await getUser(userId, userName);
   let nextUserId;
 
   // userPool is empty. Refresh it.
   if (!user.userPool.length) {
-    return refreshUserPool(userId, userPool, userList);
+    return refreshUserPool(userId, userName, userPool, userList);
   }
 
   // Get last user from pool.
@@ -61,7 +61,7 @@ const getNextUser = async (userId, userPool, userList) => {
 
   // No user available
   if (!user.userPool.length && nextUserId === null) {
-    return refreshUserPool(userId, userPool, userList);
+    return refreshUserPool(userId, userName, userPool, userList);
   }
 
   // Update userPool
@@ -72,8 +72,8 @@ const getNextUser = async (userId, userPool, userList) => {
   return nextUserId;
 };
 
-const play = async (message, userId, userPool, userList) => {
-  const nextUserId = await getNextUser(userId, userPool, userList);
+const play = async (message, userId, userName, userPool, userList) => {
+  const nextUserId = await getNextUser(userId, userName, userPool, userList);
   if (nextUserId === null) {
     message.reply('Sorry, aber du hast bereits alle User in diesem Discord-Server geliked LUL');
     return;
@@ -81,7 +81,7 @@ const play = async (message, userId, userPool, userList) => {
 
   const nextUser = userList.get(nextUserId);
   const nextUserProfile = await getUser(nextUserId, nextUser.username);
-  const ownUserProfile = await getUser(userId);
+  const ownUserProfile = await getUser(userId, userName);
 
   // @see https://discordjs.guide/popular-topics/embeds.html#embed-preview
   const embedResponse = new Discord.MessageEmbed()
@@ -108,7 +108,7 @@ const play = async (message, userId, userPool, userList) => {
         const answer = messages.first().content.toLowerCase().trim();
         if (listYes.includes(answer)) {
           like.addLikeReceived(userId, nextUserId, nextUser.username);
-          like.addLikeSent(userId, nextUserId);
+          like.addLikeSent(userId, userName, nextUserId);
           // Send to channel
           message.reply(`Du hast ${nextUser.username} ein Like geschickt :heart:`);
 
