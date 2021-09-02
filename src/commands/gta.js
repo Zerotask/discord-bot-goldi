@@ -32,11 +32,11 @@ module.exports = {
     const output = [];
     output.push('**HomeState - GTA V Roleplay - https://www.homestate.eu/forum/**');
     output.push(`Spieler online: **${numberFormat(altvServer.players)}**`);
-    output.push(`Streams online: ${streamCounter ?? 0} (https://tinyurl.com/homestate-streams)`);
+    output.push(`Streams online: ${streamCounter ?? 0} (https://www.homestate.eu/index.php?streaming-partner/&pageNo=1&sortField=lastStreamTime&sortOrder=DESC)`);
     output.push(`Server-Status: ${serverStatus ?? 'unbekannt'} (https://homestate.statuspage.io)`);
     output.push(`alt:V-Version: ${altvServer.version}`);
-    output.push('Einreise: (noch unbekannt) (illegal über das Gefängnis)');
-    output.push('Charakter: (Name noch unbekannt), (Alter noch unbekannt), Crime');
+    output.push('Einreise: 02.09.2021 (illegal über die JVA)');
+    output.push('Charakter: Adriano Moretti, Si­zi­li­a­ner, 27 Jahre, Mafia');
     message.channel.send(output);
   },
 };
