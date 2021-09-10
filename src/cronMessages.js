@@ -58,6 +58,13 @@ const run = (client) => {
   cron.schedule('0 22 * * 7', () => {
     postTopClipsOfTheWeek(client);
   }, cronOptions);
+
+  // 11. September (Birthday)
+  cron.schedule('0 0 11 9 *', () => {
+    const currentYear = new Date().getFullYear();
+    const age = currentYear - 1994;
+    mainChannel.send(`Ich wünsche <@${config.admin}> alles Liebe und viel Gesundheit zu seinem ${age}. Geburtstag :partying_face: :partying_face: :partying_face:`);
+  }, cronOptions);
 };
 
 module.exports = { run };
