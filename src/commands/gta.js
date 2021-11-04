@@ -1,7 +1,7 @@
 module.exports = {
   name: 'gta',
-  aliases: ['hs', 'homestate'],
-  description: 'Informationen über den GTA V Roleplay-Server HomeState',
+  aliases: ['fl', 'family', 'family-life', 'familylife'],
+  description: 'Informationen über den GTA V Roleplay-Server FamilyLife',
   async execute({ message }) {
     const output = [];
     output.push('**FamilyLife - GTA V Roleplay - https://twitter.com/FamilyLifeRP**');
