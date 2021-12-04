@@ -15,7 +15,7 @@ const run = (client) => {
     const info = [];
     info.push('Ich hoffe, dass ihr alle eine tollen Tag hattet! :blush:');
     info.push('Mit den Befehlen `!commands` oder `!help` erfährst du, wie du mit mir interagieren kannst.');
-    info.push(`Möchtet ihr wissen, an welchen Tagen und welches Spiel gestreamt wird? Dann klickt einfach hier: <#${config.channels.streamWeekPlan}>`);
+    // info.push(`Möchtet ihr wissen, an welchen Tagen und welches Spiel gestreamt wird? Dann klickt einfach hier: <#${config.channels.streamWeekPlan}>`);
     info.push(`Die Regeln findet ihr hier: <#${config.channels.rules}>. Falls jemand dagegen verstößt oder belästigt wird, dann kann man mit \`!report\` denjenigen melden, z. B. \`!report @Goldi hat mir unanständige Nachrichten geschickt\``);
     info.push(`Seid ihr eher so der cringe Typ? Dann kommt doch in den Kanal <#${config.channels.cringer}>. Für weitere Information schreibt \`!cringer help\``);
     info.push(`Im Kanal <#${config.channels.clips}> findet ihr lustige Clips von <@${config.admin}> und Co. Außerdem könnt ihr dort auch selbst Clips posten. Den Link zu den Twitch-Clips von <@${config.admin}> erhaltet ihr mit dem \`!clips\``);
