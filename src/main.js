@@ -10,9 +10,24 @@ require('./db');
 const fs = require('fs');
 const path = require('path');
 const Discord = require('discord.js');
+const fastify = require('fastify')({ logger: true });
 const config = require('../config.json');
 const { reactToEmojis, reactToCommands, reactToMessages } = require('./functions');
 const { run: runCronMessages } = require('./cronMessages');
+
+// Declare a route
+fastify.get('/', async () => ({ hello: 'world' }));
+
+// Run the server!
+const start = async () => {
+  try {
+    await fastify.listen(process.env.PORT || 80);
+  } catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
+};
+start();
 
 // Init discord
 const client = new Discord.Client();
