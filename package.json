@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "eslint": "^7.29.0",
-    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.22.1",
     "nodemon": "^2.0.7",
     "openode": "^2.1.0"
