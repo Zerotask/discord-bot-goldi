@@ -20,7 +20,7 @@
     "discord.js": "^12.5.3",
     "dotenv": "^10.0.0",
     "fastify": "^3.24.1",
-    "mongoose": "^5.12.15",
+    "mongoose": "^6.1.4",
     "node-cron": "^3.0.0",
     "node-fetch": "^2.6.1",
     "node-html-parser": "^4.1.3",
