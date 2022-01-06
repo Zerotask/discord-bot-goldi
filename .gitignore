@@ -3,3 +3,4 @@
 .openode
 Dockerfile
 /.vscode
+.vercel

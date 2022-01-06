@@ -53,11 +53,10 @@ client.on('message', (message) => {
 // Declare a route
 fastify.get('/', async () => 'hello world');
 
-// Run the server!
 const start = async () => {
   try {
     const port = process.env.PORT || 80;
-    await fastify.listen(port);
+    await fastify.listen(port, '0.0.0.0');
     console.log(`Server is up an running on ${port}.`);
   } catch (err) {
     fastify.log.error(err);
