@@ -1,13 +1,12 @@
 {
     "version": 2,
-    "name": "discord-bot-goldi",
     "builds": [
         {
             "src": "script.js",
-            "use": "@vercel/node"
+            "use": "/src/main.js"
         }
     ],
-    "routes": [
+    "rewrites": [
         {
             "src": "/(.*)",
             "dest": "/src/main.js"
