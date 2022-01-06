@@ -15,20 +15,6 @@ const config = require('../config.json');
 const { reactToEmojis, reactToCommands, reactToMessages } = require('./functions');
 const { run: runCronMessages } = require('./cronMessages');
 
-// Declare a route
-fastify.get('/', async () => ({ hello: 'world' }));
-
-// Run the server!
-const start = async () => {
-  try {
-    await fastify.listen(process.env.PORT || 80);
-  } catch (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-};
-start();
-
 // Init discord
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
@@ -63,3 +49,19 @@ client.on('message', (message) => {
   reactToCommands(client, message);
   reactToMessages(message);
 });
+
+// Declare a route
+fastify.get('/', async () => 'hello world');
+
+// Run the server!
+const start = async () => {
+  try {
+    const port = process.env.PORT || 80;
+    await fastify.listen(port);
+    console.log(`Server is up an running on ${port}.`);
+  } catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
+};
+start();
