@@ -32,6 +32,9 @@ module.exports = {
       'Wenn das BAföG überwiesen wird und man sich erstmal die Empfehlung in der Mensa gönnt - **AUS DEM WEG, GERINGVERDIENER!**',
       'Wenn du im Supermarkt eine OP-Maske trägst und der vor dir nur eine FFP2-Maske auf hat - **AUS DEM WEG, GERINGVERDIENER!**',
       'Was ich von Unternehmen ohne Betriebsrat halte? Anteile. - **AUS DEM WEG, GERINGVERDIENER!**',
+      'Du denkst bei Jet an eine Tankstelle? - **AUS DEM WEG, GERINGVERDIENER!**',
+      'Warum ich die Grünen gewählt habe? Umso höher die Benzinpreise, desto weniger Geringverdiener blockieren die Straße. - **AUS DEM WEG, GERINGVERDIENER!**',
+      'Wenn du bei Komplexe an deinen Therapeuten und nicht an München denkst. **AUS DEM WEG, GERINGVERDIENER!**',
     ];
     message.channel.send(list[getRandomNumber(0, list.length - 1)]);
   },
