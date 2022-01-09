@@ -73,13 +73,20 @@ const getNextUser = async (userId, userName, userPool, userList) => {
 };
 
 const play = async (message, userId, userName, userPool, userList) => {
-  const nextUserId = await getNextUser(userId, userName, userPool, userList);
-  if (nextUserId === null) {
-    message.reply('Sorry, aber du hast bereits alle User in diesem Discord-Server geliked LUL');
-    return;
+  let nextUser = null;
+  let nextUserId = null;
+
+  while (nextUser === null || nextUser === undefined) {
+    // eslint-disable-next-line no-await-in-loop
+    nextUserId = await getNextUser(userId, userName, userPool, userList);
+    if (nextUserId === null) {
+      message.reply('Sorry, aber du hast bereits alle User in diesem Discord-Server geliked LUL');
+      return;
+    }
+
+    nextUser = userList.get(nextUserId);
   }
 
-  const nextUser = userList.get(nextUserId);
   const nextUserProfile = await getUser(nextUserId, nextUser.username);
   const ownUserProfile = await getUser(userId, userName);
 
