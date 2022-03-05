@@ -1,5 +1,27 @@
 const cron = require('node-cron');
+const date = require('date-and-time');
 const config = require('../config.json');
+const { getTopClipsOfTheWeek } = require('./twitch');
+
+const postTopClipsOfTheWeek = async (client) => {
+  const clipsOfTheWeek = await getTopClipsOfTheWeek();
+  if (clipsOfTheWeek.length > 0) {
+    const clipsChannel = client.channels.cache.get(config.channels.clips);
+    clipsChannel.send('Ich präsentiere euch die Clips der Woche :blush:');
+    let place = 1;
+    const crownEmoji = '<:Krone_2:829297770354442251>';
+    clipsOfTheWeek.forEach((clip) => {
+      const response = [];
+      const repeatCrowns = Math.ceil(3 / place);
+      response.push(`** ${crownEmoji.repeat(repeatCrowns)} Platz ${place}: ${clip.title} ${crownEmoji.repeat(repeatCrowns)}**`);
+      response.push(`*Erstellt von: ${clip.creatorDisplayName} | Datum: ${date.format(clip.creationDate, 'DD.MM.YYYY HH:MM')} Uhr | Views: ${clip.views}*`);
+      response.push(clip.url);
+      clipsChannel.send(response);
+
+      place += 1;
+    });
+  }
+};
 
 const run = (client) => {
   const mainChannel = client.channels.cache.get(config.channels.general);
@@ -20,6 +42,11 @@ const run = (client) => {
     info.push(`Seid ihr eher so der cringe Typ? Dann kommt doch in den Kanal <#${config.channels.cringer}>. Für weitere Information schreibt \`!cringer help\``);
     info.push(`Im Kanal <#${config.channels.clips}> findet ihr lustige Clips von <@${config.admin}> und Co. Außerdem könnt ihr dort auch selbst Clips posten. Den Link zu den Twitch-Clips von <@${config.admin}> erhaltet ihr mit dem \`!clips\``);
     mainChannel.send(info);
+  }, cronOptions);
+
+  // Sunday 22:00
+  cron.schedule('0 22 * * 7', () => {
+    postTopClipsOfTheWeek(client);
   }, cronOptions);
 
   // 11. September (Birthday)
