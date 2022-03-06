@@ -35,6 +35,24 @@ const getTopClipsOfTheWeek = async (count) => {
   return clipsResponse.data;
 };
 
+const getTopClipsOfTheMonth = async (count) => {
+  const clipsResponse = await getApiClient().helix.clips.getClipsForBroadcaster(
+    config.twitchChannelId,
+    { startDate: getDateDaysBack(30), endDate: new Date(), limit: count || 1 },
+  );
+
+  return clipsResponse.data;
+};
+
+const getTopClipsOfTheYear = async (count) => {
+  const clipsResponse = await getApiClient().helix.clips.getClipsForBroadcaster(
+    config.twitchChannelId,
+    { startDate: getDateDaysBack(365), endDate: new Date(), limit: count || 3 },
+  );
+
+  return clipsResponse.data;
+};
+
 const getFollowersCount = async () => {
   const follows = getApiClient().helix.users.getFollows({ followedUser: config.twitchChannelId });
   return (await follows).total;
@@ -45,5 +63,7 @@ module.exports = {
   getUser,
   getStreamer,
   getTopClipsOfTheWeek,
+  getTopClipsOfTheMonth,
+  getTopClipsOfTheYear,
   getFollowersCount,
 };
